@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`align-versions should call the dependency.logVersionMisMatch method for each resolved package path and flow dependencies 1`] = `
+Array [
+  Array [
+    "flow-bin",
+    "/foo/bar/package-a",
+  ],
+  Array [
+    "flow-typed",
+    "/foo/bar/package-a",
+  ],
+  Array [
+    "flow-bin",
+    "/foo/bar/package-b",
+  ],
+  Array [
+    "flow-typed",
+    "/foo/bar/package-b",
+  ],
+  Array [
+    "flow-bin",
+    "/foo/bar/package-c",
+  ],
+  Array [
+    "flow-typed",
+    "/foo/bar/package-c",
+  ],
+]
+`;

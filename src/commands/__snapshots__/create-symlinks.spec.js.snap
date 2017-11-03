@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`create-symlinks should create symlinks for the .flowconfig for each package as well as symlinks for the dependencies 1`] = `
+Array [
+  Array [
+    "/usr/app/foo/.flowconfig",
+    "/foo/bar",
+  ],
+  Array [
+    "/usr/app/foo/.flowconfig",
+    "/foo/baz",
+  ],
+]
+`;
+
+exports[`create-symlinks should create symlinks for the .flowconfig for each package as well as symlinks for the dependencies 2`] = `
+Array [
+  Array [
+    "baz-dependency",
+    "/foo",
+    "/foo/bar",
+  ],
+  Array [
+    "baz-dependency",
+    "/foo",
+    "/foo/baz",
+  ],
+]
+`;

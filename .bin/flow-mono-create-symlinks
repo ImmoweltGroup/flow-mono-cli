@@ -1,0 +1,18 @@
+#!/usr/bin/env node
+
+// @flow
+
+const cli = require('commander');
+const asyncUtils = require('./../dist/lib/async.js');
+const createFlowTypeSymlinks = require('./../dist/commands/create-symlinks.js');
+
+cli
+  .option('flowconfig-path <string>', 'The relative path to the `.flowconfig` for which symlinks will be created in all packages with a `flow-bin` dependency.')
+  .parse(process.argv);
+
+if (!cli.args.length) {
+  cli.help();
+  process.exit(0);
+}
+
+asyncUtils.exec(createFlowTypeSymlinks, ...cli.args);

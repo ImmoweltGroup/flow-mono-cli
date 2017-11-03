@@ -1,0 +1,26 @@
+#
+# By default we ignore all `node_modules`, except for modules which ship typings, since this increases the startup time of Flow drastically
+# @see https://github.com/facebook/flow/issues/869
+#
+[ignore]
+.*\/node_modules\/(?!(@immowelt|log-fancy)\/).*
+.*\/node_modules/npmconf/.*
+.*\/node_modules/config-chain/.*
+
+[include]
+
+[libs]
+
+[options]
+suppress_comment= \\(.\\|\n\\)*\\$FlowFixMe
+
+#
+# Supress errors in case we require() something based on a variable (E.g. used in the getComponent function of hypernova).
+#
+module.ignore_non_literal_requires=true
+
+[lints]
+# all=off by default
+all=warn
+untyped-type-import=error
+sketchy-null-bool=off

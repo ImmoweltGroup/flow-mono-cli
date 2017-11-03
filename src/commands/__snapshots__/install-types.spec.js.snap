@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`install-types should fatally exit the process if something went wrong during the installation 1`] = `
+Array [
+  Array [
+    "Failed installing \\"flow-typed\\" defintions in package \\"myFooPackageName\\".
+
+",
+    "Foo",
+  ],
+]
+`;
+
+exports[`install-types should update the flow-typed cache and afterwards install types in all packages 1`] = `
+Array [
+  Array [
+    "flow-typed",
+    Array [
+      "update-cache",
+    ],
+    Object {
+      "cwd": "/foo",
+      "localDir": "/foo",
+      "preferLocal": true,
+    },
+  ],
+  Array [
+    "flow-typed",
+    Array [
+      "install",
+      "--overwrite",
+    ],
+    Object {
+      "cwd": "/foo/bar",
+      "localDir": "/foo/bar",
+      "preferLocal": true,
+    },
+  ],
+  Array [
+    "flow-typed",
+    Array [
+      "install",
+      "--overwrite",
+    ],
+    Object {
+      "cwd": "/foo/baz",
+      "localDir": "/foo/baz",
+      "preferLocal": true,
+    },
+  ],
+]
+`;

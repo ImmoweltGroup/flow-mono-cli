@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`create-stubs should iterate over all dependencies of the resolved packages and create 2nd level stubs for the configured dependency names. 1`] = `
+Array [
+  Array [
+    "/foo/bar/package-a",
+  ],
+  Array [
+    "/foo/bar/package-b",
+  ],
+  Array [
+    "/foo/bar/package-c",
+  ],
+]
+`;
+
+exports[`create-stubs should iterate over all dependencies of the resolved packages and create 2nd level stubs for the configured dependency names. 2`] = `
+Array [
+  Array [
+    "/foo/bar/package-a",
+    "foo-package",
+  ],
+  Array [
+    "/foo/bar/package-a",
+    "bar-package",
+  ],
+  Array [
+    "/foo/bar/package-b",
+    "foo-package",
+  ],
+]
+`;
