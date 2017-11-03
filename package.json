@@ -47,8 +47,6 @@
     "**/*.{js,json,css}": ["prettier --write", "git add"]
   },
   "dependencies": {
-    "@immowelt/babel-preset-immowelt-node": "^1.1.0",
-    "babel-cli": "^6.26.0",
     "commander": "^2.11.0",
     "execa": "^0.8.0",
     "find-up": "^2.1.0",
@@ -60,9 +58,11 @@
     "yargs": "^10.0.3"
   },
   "devDependencies": {
+    "@immowelt/babel-preset-immowelt-node": "^1.1.0",
     "@immowelt/eslint-config-immowelt-react": "^2.0.2",
     "@immowelt/jest-preset-node": "^1.0.0",
     "@immowelt/styleguide-javascript": "^1.0.6",
+    "babel-cli": "^6.26.0",
     "eslint": "^4.9.0",
     "flow-bin": "^0.58.0",
     "flow-copy-source": "^1.2.1",
