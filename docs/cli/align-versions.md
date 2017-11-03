@@ -9,5 +9,5 @@ Compares all mono-repo packages dependencies of `flow-bin` and `flow-typed` to t
 #### Example
 
 ```sh
-$ ./node_modules/.bin/flow-mono align-versions
+$ flow-mono align-versions
 ```

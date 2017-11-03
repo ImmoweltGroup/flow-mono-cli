@@ -1,6 +1,8 @@
 # Table of Contents
 
 * [Read Me](/README.md)
+* [Introduction](/docs/introduction/README.md)
+  * [Motivation](/docs/introduction/Motivation.md)
 * [CLI Reference](/docs/cli/README.md)
   * [`flow-mono create-symlinks`](/docs/cli/create-symlinks.md)
   * [`flow-mono install-types`](/docs/cli/install-types.md)

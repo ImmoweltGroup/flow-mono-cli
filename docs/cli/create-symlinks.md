@@ -1,6 +1,6 @@
 # `flow-mono create-symlinks [flowconfig-path]`
 
-Ever had errors like `Required module not found` for dependencies which where located in the root `node_modules` of your mono-repo? Ever wanted to maintain a fallback or even singleton `.flowconfig` in your mono-repo? This command is your new best friend!
+Ever had errors like `Required module not found` for dependencies which where located in the root `node_modules` of your mono-repo? Ever wanted to maintain a fallback or even a singleton `.flowconfig` in your mono-repo? This command is your new best friend!
 
 #### Features
 
@@ -11,7 +11,7 @@ Ever had errors like `Required module not found` for dependencies which where lo
 #### Example
 
 ```sh
-$ ./node_modules/.bin/flow-mono create-symlinks ./build/.flowconfig
+$ flow-mono create-symlinks ./build/.flowconfig
 ```
 
 #### Configuration

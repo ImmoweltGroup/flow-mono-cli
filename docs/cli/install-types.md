@@ -12,5 +12,5 @@ Updates your local `flow-typed` cache and does a parallel `flow-typed install` i
 #### Example
 
 ```sh
-$ ./node_modules/.bin/flow-mono install-types --ignoreDeps=peer --overwrite
+$ flow-mono install-types --ignoreDeps=peer --overwrite
 ```

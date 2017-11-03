@@ -10,7 +10,7 @@ Creates stubs for so called "in-direct" dependencies, this is useful if a packag
 #### Example
 
 ```sh
-$ ./node_modules/.bin/flow-mono create-stubs
+$ flow-mono create-stubs
 ```
 
 #### Configuration
