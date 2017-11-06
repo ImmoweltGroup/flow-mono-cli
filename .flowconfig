@@ -6,6 +6,7 @@
 .*\/node_modules\/(?!(@immowelt|log-fancy|find-config-up)\/).*
 .*\/node_modules/npmconf/.*
 .*\/node_modules/config-chain/.*
+.*/examples/.*
 
 [include]
 
