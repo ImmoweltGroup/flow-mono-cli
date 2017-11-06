@@ -7,6 +7,7 @@ const logger = require('./logger.js');
 
 const _utils = {
   readFileAsync: promisify(fs.readFile),
+  writeFileAsync: promisify(fs.writeFile),
   accessAsync: promisify(fs.access)
 };
 
@@ -30,6 +31,12 @@ const fileUtils = {
     }
   },
 
+  /**
+   * Reads and parses a json file asynchronously.
+   *
+   * @param  {String}  path The Path to the JSON file.
+   * @return {Promise}      The Promise that resolves with the file contents.
+   */
   async readJson(path: string | any): Promise<Object> {
     try {
       const contents = await _utils.readFileAsync(path, 'utf8');
@@ -40,6 +47,20 @@ const fileUtils = {
     }
 
     return {};
+  },
+
+  /**
+   * Writes the contents to the given destination.
+   *
+   * @param  {String}  path     The path to the file.
+   * @param  {*}       contents The contents to write.
+   * @param  {String}  encoding An optional encoding to use.
+   * @return {Promise}          The promise that resolves once the file was written.
+   */
+  async writeFile(path: string, contents: any, encoding?: string = 'utf8') {
+    await _utils.writeFileAsync(path, contents, 'utf8');
+
+    return contents;
   }
 };
 

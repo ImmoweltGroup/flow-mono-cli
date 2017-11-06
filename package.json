@@ -49,8 +49,10 @@
   "dependencies": {
     "commander": "^2.11.0",
     "execa": "^0.8.0",
+    "find-config-up": "^1.0.0",
     "find-up": "^2.1.0",
     "glob": "^7.1.2",
+    "inquirer": "^3.3.0",
     "lodash": "^4.17.4",
     "log-fancy": "^1.3.0",
     "make-symlinks": "^1.0.0",

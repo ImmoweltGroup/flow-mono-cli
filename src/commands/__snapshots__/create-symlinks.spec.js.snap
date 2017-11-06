@@ -4,10 +4,6 @@ exports[`create-symlinks should create symlinks for the .flowconfig for each pac
 Array [
   Array [
     "/usr/app/foo/.flowconfig",
-    "/foo/bar",
-  ],
-  Array [
-    "/usr/app/foo/.flowconfig",
     "/foo/baz",
   ],
 ]

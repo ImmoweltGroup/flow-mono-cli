@@ -75,3 +75,31 @@ describe('fileUtils.readJson()', () => {
     expect(fatal.mock.calls.length).toBe(1);
   });
 });
+
+describe('fileUtils.writeFile()', () => {
+  let writeFileAsync;
+
+  beforeEach(() => {
+    writeFileAsync = jest
+      .spyOn(fileUtils._utils, 'writeFileAsync')
+      .mockImplementation(jest.fn());
+  });
+
+  afterEach(() => {
+    writeFileAsync.mockRestore();
+  });
+
+  it('should be a function', () => {
+    expect(typeof fileUtils.readJson).toBe('function');
+  });
+
+  it('should call the writeFileAsync method and propagate all arguments to it.', async () => {
+    await fileUtils.writeFile('/foo/bar/baz.json', {foo: 'bar'});
+
+    expect(writeFileAsync.mock.calls[0]).toEqual([
+      '/foo/bar/baz.json',
+      {foo: 'bar'},
+      'utf8'
+    ]);
+  });
+});

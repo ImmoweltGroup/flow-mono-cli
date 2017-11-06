@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`dependency.updateDependency() should align the given version in all dependency maps and write the new file contents to disk 1`] = `
+Array [
+  "/foo/packages/bar/package.json",
+  "{
+  \\"name\\": \\"myPackage\\",
+  \\"dependencies\\": {
+    \\"foo\\": \\"1.2.0\\"
+  },
+  \\"devDependencies\\": {
+    \\"myDependency\\": \\"1.1.0\\"
+  },
+  \\"peerDependencies\\": {
+    \\"myDependency\\": \\"1.1.0\\"
+  }
+}",
+]
+`;

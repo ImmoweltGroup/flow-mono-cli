@@ -1,4 +1,4 @@
-![flow-mono-cli](https://user-images.githubusercontent.com/1557092/32374901-e2682dfc-c09f-11e7-8607-ba80619f10c7.png)
+<img alt="flow-mono-cli" src="https://user-images.githubusercontent.com/1557092/32433811-8ae21ef0-c2dc-11e7-9e5d-9757165427e0.png" width="425">
 
 # flow-mono-cli
 
@@ -15,22 +15,22 @@ It provides a set of commands that we found to be very useful *if you want your 
 
 ## Features
 
+* Creates symlinks for flow to be able to resolve dependencies which where installed/hoisted into the root `node_modules` of your mono-repo into each packages `node_modules`.
+* Smart resolve mechanism of mono-repo packages with a dependency to `flow-bin`, based on the `workspaces` config in your root `package.json`.
 * Keeps your `flow-bin` and `flow-typed` versions in sync across your mono-repo packages.
-* Creates necessary symlinks for dependencies which where installed into the root `node_modules` of your mono-repo into each packages `node_modules`.
-* Maintain a single or fallback `.flowconfig` across all packages.
-* Create flow-typed stubs for dependencies of dependencies.
-* Configurable via a `.monoflowrc` or `mono-flow` property in your mono-repo's root `package.json`.
+* Maintains a single or fallback `.flowconfig` across all packages.
+* Creates flow-typed stubs for in-direct dependencies (dependencies of dependencies).
+* Configurable via a `.flowmonorc` or `flow-mono` property in your mono-repo's root `package.json`.
 
 ## Install
-
 ```sh
-$ npm install flow-mono-cli flow-bin flow-typed --save-dev
+$ npm install flow-mono-cli --save-dev
 ```
 
 or
 
 ```sh
-$ yarn add flow-mono-cli flow-bin flow-typed --dev
+$ yarn add flow-mono-cli --dev
 ```
 
 ## Commands and Documentation

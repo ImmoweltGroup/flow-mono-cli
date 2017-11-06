@@ -31,7 +31,7 @@ describe('create-symlinks', () => {
     });
     path.resolveMonoRepoRootPath.mockReturnValue('/foo');
     path.resolveMonoRepoPackagePaths.mockReturnValue(['/foo/bar', '/foo/baz']);
-    file.existsAsync.mockReturnValue(false);
+    file.existsAsync.mockReturnValueOnce(true).mockReturnValue(false);
     dependency.readPackageJson.mockReturnValue({});
     dependency.mergeDependenciesIntoList.mockReturnValue([
       'foo-dependency',

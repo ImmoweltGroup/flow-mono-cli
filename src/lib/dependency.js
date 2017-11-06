@@ -4,7 +4,6 @@ const fs = require('fs');
 const {join} = require('path');
 const path = require('./paths.js');
 const file = require('./file.js');
-const logger = require('./logger.js');
 
 const dependencyUtils = {
   /**
@@ -62,26 +61,75 @@ const dependencyUtils = {
   },
 
   /**
-   * Logs a mismatch of the given dependency key to the users console.
+   * Updates the given dependency in the given packagePaths package.json.
+   *
+   * @param  {String}  packagePath   The full path to the package in which the update should be executed.
+   * @param  {String}  dependencyKey The dependency name to update.
+   * @param  {String}  version       The version to which the dependency should be bumped.
+   * @return {Promise}               The promise that resolves once the update is executed.
+   */
+  async updateDependency(
+    packagePath: string,
+    dependencyKey: string,
+    version: string
+  ) {
+    const update = (
+      obj: Object,
+      dependencyType: string,
+      dependencyKey: string,
+      version: string
+    ) => {
+      if (obj[dependencyType] && obj[dependencyType][dependencyKey]) {
+        obj[dependencyType][dependencyKey] = version;
+      }
+
+      return obj;
+    };
+    let json = await this.readPackageJson(packagePath);
+
+    json = update(json, 'dependencies', dependencyKey, version);
+    json = update(json, 'devDependencies', dependencyKey, version);
+    json = update(json, 'peerDependencies', dependencyKey, version);
+    json = update(json, 'optionalDependencies', dependencyKey, version);
+
+    await file.writeFile(
+      join(packagePath, 'package.json'),
+      JSON.stringify(json, null, 2)
+    );
+
+    return json;
+  },
+
+  /**
+   * Checks if a mismatch of the given dependency key is given compared to the one specified in the root package.json.
    *
    * @param  {String}  key         The key/name of the dependency to validate.
    * @param  {String}  packagePath The package path to validate against the root.
    * @return {Promise}             The promise that resolves once the validation finished.
    */
-  async logVersionMisMatch(key: string, packagePath: string): Promise<void> {
+  async hasRootVersionMisMatch(
+    key: string,
+    packagePath: string
+  ): Promise<{
+    hasMisMatch: boolean,
+    rootVersion: string,
+    packageVersion: string
+  }> {
     const rootPath = await path.resolveMonoRepoRootPath();
     const [rootPackageJson, packageJson] = await Promise.all([
       this.readPackageJson(rootPath),
       this.readPackageJson(packagePath)
     ]);
-    const rootDep = this.getDependencyVersion(key, rootPackageJson);
-    const dep = this.getDependencyVersion(key, packageJson);
+    const rootVersion = this.getDependencyVersion(key, rootPackageJson);
+    const packageVersion = this.getDependencyVersion(key, packageJson);
 
-    if (dep !== rootDep) {
-      logger.warn(
-        `Mismatch of dependency "${key}" in "${packagePath}". Expected version to be "${rootDep}" but found "${dep}".`
-      );
-    }
+    return {
+      hasMisMatch: Boolean(
+        rootVersion && packageVersion && packageVersion !== rootVersion
+      ),
+      rootVersion,
+      packageVersion
+    };
   },
 
   /**

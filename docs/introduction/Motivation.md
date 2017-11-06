@@ -1,6 +1,6 @@
 # Motivation
 
-As of now maintaining a mono-repository with flow is hard, there are a few issues within flow itself that you will stumble upon when adding flow to your mono-repository such as the all to common `Required module not found` error, maintaining a `flow` instance in each package, using Lernas `--hoist` or even yarn workspaces feature and so on and so on.
+As of now maintaining a mono-repository with flow is hard, there are a few issues within flow itself that you will stumble upon when adding flow to your mono-repository such as the all to common `Required module not found` error which pops up when using Lernas `--hoist` or even yarn workspaces feature.
 
 Here is a list of issues that we try to solve, if you find yourself in one of these, you may want to try out this CLI and see if it helps to solve your problems.
 

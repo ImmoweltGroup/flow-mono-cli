@@ -5,7 +5,6 @@ jest.mock('./logger.js');
 jest.mock('./paths.js');
 
 const fs = require('fs');
-const logger: any = require('./logger.js');
 const file: any = require('./file.js');
 const path: any = require('./paths.js');
 const dependency = require('./dependency.js');
@@ -122,7 +121,51 @@ describe('dependency.readPackageJson()', () => {
   });
 });
 
-describe('dependency.logVersionMisMatch()', () => {
+describe('dependency.updateDependency()', () => {
+  let readPackageJson;
+  let writeFile;
+
+  beforeEach(() => {
+    readPackageJson = jest
+      .spyOn(dependency, 'readPackageJson')
+      .mockImplementation(jest.fn());
+    writeFile = jest.spyOn(file, 'writeFile').mockImplementation(jest.fn());
+  });
+
+  afterEach(() => {
+    readPackageJson.mockRestore();
+    writeFile.mockRestore();
+  });
+
+  it('should be a function', () => {
+    expect(typeof dependency.updateDependency).toBe('function');
+  });
+
+  it('should align the given version in all dependency maps and write the new file contents to disk', async () => {
+    readPackageJson.mockReturnValue({
+      name: 'myPackage',
+      dependencies: {
+        foo: '1.2.0'
+      },
+      devDependencies: {
+        myDependency: '1.0.0'
+      },
+      peerDependencies: {
+        myDependency: '1.0.0'
+      }
+    });
+
+    await dependency.updateDependency(
+      '/foo/packages/bar',
+      'myDependency',
+      '1.1.0'
+    );
+
+    expect(writeFile.mock.calls[0]).toMatchSnapshot();
+  });
+});
+
+describe('dependency.hasRootVersionMisMatch()', () => {
   let readPackageJson;
 
   beforeEach(() => {
@@ -136,7 +179,7 @@ describe('dependency.logVersionMisMatch()', () => {
   });
 
   it('should be a function', () => {
-    expect(typeof dependency.logVersionMisMatch).toBe('function');
+    expect(typeof dependency.hasRootVersionMisMatch).toBe('function');
   });
 
   it('should resolve the root and the given packagePaths package.json, compare the given package name version and log out any differences.', async () => {
@@ -145,12 +188,13 @@ describe('dependency.logVersionMisMatch()', () => {
       .mockReturnValueOnce({dependencies: {foo: '1.2.0', bar: '1.0.0'}})
       .mockReturnValueOnce({dependencies: {foo: '1.3.0', bar: '1.0.0'}});
 
-    await dependency.logVersionMisMatch('foo', '/foo/bar');
+    const results = await dependency.hasRootVersionMisMatch('foo', '/foo/bar');
 
-    expect(logger.warn.mock.calls.length).toBe(1);
-    expect(logger.warn.mock.calls[0]).toEqual([
-      'Mismatch of dependency "foo" in "/foo/bar". Expected version to be "1.2.0" but found "1.3.0".'
-    ]);
+    expect(results).toEqual({
+      hasMisMatch: true,
+      rootVersion: '1.2.0',
+      packageVersion: '1.3.0'
+    });
   });
 });
 

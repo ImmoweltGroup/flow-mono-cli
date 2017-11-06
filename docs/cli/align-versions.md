@@ -1,10 +1,10 @@
 # `flow-mono align-versions`
 
-Compares all mono-repo packages dependencies of `flow-bin` and `flow-typed` to the version specified in the root `package.json` and logs out any differences if there are any.
+Compares all mono-repo packages with a dependency to `flow-bin` or `flow-typed` and logs out any differences in the versions based on the root `package.json`.
 
 #### Features
 
-* Makes maintaining the same `flow-bin` and `flow-typed` version a bit easier.
+* Makes maintaining the same `flow-bin` and `flow-typed` version across your mono-repo packages a bit easier.
 
 #### Example
 

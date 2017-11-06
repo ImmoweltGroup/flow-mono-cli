@@ -3,7 +3,7 @@
 # @see https://github.com/facebook/flow/issues/869
 #
 [ignore]
-.*\/node_modules\/(?!(@immowelt|log-fancy)\/).*
+.*\/node_modules\/(?!(@immowelt|log-fancy|find-config-up)\/).*
 .*\/node_modules/npmconf/.*
 .*\/node_modules/config-chain/.*
 
