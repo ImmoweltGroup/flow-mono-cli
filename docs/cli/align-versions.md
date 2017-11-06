@@ -11,3 +11,7 @@ Compares all mono-repo packages with a dependency to `flow-bin` or `flow-typed` 
 ```sh
 $ flow-mono align-versions
 ```
+
+#### Options and Arguments
+
+_This command does not have any arguments or options_

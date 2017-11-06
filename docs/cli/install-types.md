@@ -14,3 +14,7 @@ Updates your local `flow-typed` cache and does a parallel `flow-typed install` i
 ```sh
 $ flow-mono install-types --ignoreDeps=peer --overwrite
 ```
+
+#### Options and Arguments
+
+All given options are being propagated to each `flow-typed intall` child process in the packages.

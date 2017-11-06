@@ -2,8 +2,8 @@
 
 # dependencies
 node_modules
-packages/*/node_modules
 packages/*/.flowconfig
 
 # third party typings
+flow-typed/npm
 packages/*/flow-typed/npm

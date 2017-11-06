@@ -8,4 +8,4 @@ const installFlowTypes = require('./../dist/commands/install-types.js');
 
 cli.allowUnknownOption(true).parse(process.argv);
 
-asyncUtils.exec(installFlowTypes, ...cli.args);
+asyncUtils.exec(installFlowTypes);

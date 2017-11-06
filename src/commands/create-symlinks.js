@@ -9,11 +9,11 @@ const file = require('./../lib/file.js');
 const logger = require('./../lib/logger.js');
 
 module.exports = async function createFlowTypeSymlinks(
-  relativeFlowConfigPath: string,
+  {flowConfigPath}: {flowConfigPath: string},
   cwd?: string = process.cwd()
 ) {
   const cliConfig = await config.resolveAndReadConfig();
-  const flowConfigPath = join(cwd, relativeFlowConfigPath);
+  const absoluteFlowConfigPath = join(cwd, flowConfigPath);
 
   logger.info(
     `Creating symlinks to the defined ".flowconfig" and dependencies to all packages with a "flow-bin" dependency.`
@@ -31,7 +31,7 @@ module.exports = async function createFlowTypeSymlinks(
       );
 
       if (existsFlowConfig === false) {
-        await file.createSymlink(flowConfigPath, packagePath);
+        await file.createSymlink(absoluteFlowConfigPath, packagePath);
       }
 
       const packageJson = await dependency.readPackageJson(packagePath);

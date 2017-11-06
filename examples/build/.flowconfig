@@ -13,6 +13,10 @@
 [include]
 
 [libs]
+#
+# Include patched typings from the root of the mono-repo.
+#
+./../../../flow-typed/npm
 
 [options]
 module.ignore_non_literal_requires=true

@@ -39,7 +39,10 @@ describe('create-symlinks', () => {
       'baz-dependency'
     ]);
 
-    await createFlowTypeSymlinks('/foo/.flowconfig', '/usr/app');
+    await createFlowTypeSymlinks(
+      {flowConfigPath: '/foo/.flowconfig'},
+      '/usr/app'
+    );
 
     expect(file.createSymlink.mock.calls).toMatchSnapshot();
     expect(dependency.createSymlinkForDependency.mock.calls).toMatchSnapshot();

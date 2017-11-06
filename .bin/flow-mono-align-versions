@@ -8,4 +8,4 @@ const alignFlowVersions = require('./../dist/commands/align-versions.js');
 
 cli.parse(process.argv);
 
-asyncUtils.exec(alignFlowVersions, ...cli.args);
+asyncUtils.exec(alignFlowVersions);

@@ -13,6 +13,10 @@ Creates stubs for so called "in-direct" dependencies, this is useful if a packag
 $ flow-mono create-stubs
 ```
 
+#### Options and Arguments
+##### `-u, --use-root` (Optional)
+Installs all stubs in the root of your mono-repo.
+
 #### Configuration
 
 By default this command will not do anything since automatically stubbing all 2nd level dependencies is to error prone. Instead you need to whitelist the dependencies for which we should create stubs of it's in-direct dependencies. To do so just create a `.monoflowrc` or a `mono-flow` section in your repositories root `package.json`, paste in the example and adjust as you like!

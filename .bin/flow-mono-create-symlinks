@@ -15,4 +15,6 @@ if (!cli.args.length) {
   process.exit(0);
 }
 
-asyncUtils.exec(createFlowTypeSymlinks, ...cli.args);
+asyncUtils.exec(createFlowTypeSymlinks, {
+  flowConfigPath: cli.args[0]
+});

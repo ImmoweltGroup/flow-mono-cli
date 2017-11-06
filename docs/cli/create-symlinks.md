@@ -14,6 +14,10 @@ Ever had errors like `Required module not found` for dependencies which where lo
 $ flow-mono create-symlinks ./build/.flowconfig
 ```
 
+#### Options and Arguments
+
+The only argument provided should be the relative path to the fallback / singleton `.flowconfig`.
+
 #### Configuration
 
 Additionally you can specify a blacklist of packages that should be ignored entirely from being symlinked. To do so just create a `.monoflowrc` or a `mono-flow` section in your repositories root `package.json`, paste in the example and adjust as you like!

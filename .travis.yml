@@ -12,7 +12,10 @@ script:
 
   # Integration test
   - npm run build
-  - cd examples && yarn install && yarn bootstrap && yarn test
+  - cd examples
+  - yarn install
+  - yarn bootstrap
+  - yarn test
 after_script:
   - greenkeeper-lockfile-upload
 after_success:
