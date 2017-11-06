@@ -41,7 +41,9 @@
     "flow-typed-install": "flow-typed install --ignoreDeps=peer --overwrite",
     "prepare": "npm run flow-typed-install || true",
     "prepublishOnly": "npm run build",
-    "precommit": "lint-staged && npm test"
+    "precommit": "lint-staged && npm test",
+    "semantic-release":
+      "semantic-release pre && npm publish && semantic-release post"
   },
   "lint-staged": {
     "**/*.{js,json,css}": ["prettier --write", "git add"]
@@ -64,6 +66,8 @@
     "@immowelt/eslint-config-immowelt-react": "^2.0.2",
     "@immowelt/jest-preset-node": "^1.0.0",
     "@immowelt/styleguide-javascript": "^1.0.6",
+    "@inkdpixels/commit-analyzer": "^1.0.0",
+    "@inkdpixels/release-notes-generator": "^1.0.0",
     "babel-cli": "^6.26.0",
     "eslint": "^4.9.0",
     "flow-bin": "^0.58.0",
@@ -73,10 +77,15 @@
     "jest": "^21.0.2",
     "lint-staged": "^4.1.2",
     "prettier": "^1.6.1",
-    "rimraf": "^2.6.1"
+    "rimraf": "^2.6.1",
+    "semantic-release": "^8.2.0"
   },
   "jest": {
     "preset": "@immowelt/jest-preset-node"
+  },
+  "release": {
+    "analyzeCommits": "@inkdpixels/commit-analyzer",
+    "generateNotes": "@inkdpixels/release-notes-generator"
   },
   "repository": {
     "type": "git",
