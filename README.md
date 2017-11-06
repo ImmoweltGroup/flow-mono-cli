@@ -22,7 +22,7 @@ It provides a set of commands that we found to be very useful *if you want your 
 * Creates flow-typed stubs for in-direct dependencies (dependencies of dependencies).
 * Configurable via a `.flowmonorc` or `flow-mono` property in your mono-repo's root `package.json`.
 
-## Install
+## Installation
 ```sh
 $ npm install flow-mono-cli --save-dev
 ```
