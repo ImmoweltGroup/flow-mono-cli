@@ -1,6 +1,6 @@
 # `flow-mono create-stubs`
 
-Creates stubs for so called "in-direct" dependencies, this is useful if a package provides it's own typings out of the box and you don't want to supress any errors from in-direct dependencies or even `Required module not found` errors.
+Creates stubs for so called "in-direct" dependencies, this is useful if a package provides it's own typings out of the box and you don't want to suppress any errors from in-direct dependencies or even `Required module not found` errors.
 
 #### Features
 
