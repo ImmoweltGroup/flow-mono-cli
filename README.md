@@ -33,6 +33,16 @@ or
 $ yarn add flow-mono-cli --dev
 ```
 
+afterwards make sure that you've got your workspaces configured in the root `package.json`, e.g.
+
+```json
+{
+  "workspaces": [
+    "packages/*"
+  ]
+}
+```
+
 ## Commands and Documentation
 
 * [`flow-mono create-symlinks`](/docs/cli/create-symlinks.md)
