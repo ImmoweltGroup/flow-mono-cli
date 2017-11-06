@@ -17,6 +17,7 @@ script:
   - yarn bootstrap
   - yarn test
 after_script:
+  - cd ..
   - greenkeeper-lockfile-upload
 after_success:
   - npm run semantic-release
