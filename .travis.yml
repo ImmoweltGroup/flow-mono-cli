@@ -6,6 +6,12 @@ before_install:
   - npm install -g greenkeeper-lockfile@1
 before_script:
   - greenkeeper-lockfile-update
+script:
+  # Unit test & code style
+  - npm test
+
+  # Integration test
+  - cd examples && yarn install && yarn bootstrap && yarn test
 after_script:
   - greenkeeper-lockfile-upload
 after_success:

@@ -1,0 +1,33 @@
+{
+  "name": "flow-mono-cli-example",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "bootstrap":
+      "yarn run create-symlinks && yarn run install-types && yarn run create-stubs",
+    "create-symlinks": "./../.bin/flow-mono create-symlinks build/.flowconfig",
+    "install-types":
+      "./../.bin/flow-mono install-types --overwrite --ignoreDeps=peer",
+    "create-stubs": "./../.bin/flow-mono create-stubs",
+    "test": "yarn run flow",
+    "flow": "oao all --parallel flow",
+    "flow:stop": "oao all --parallel 'flow stop'"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "private": true,
+  "workspaces": ["packages/*"],
+  "flow-mono": {
+    "create-symlinks": {
+      "ignore": ["eslint", "jest"]
+    },
+    "create-stubs": {
+      "dependencies": ["log-fancy"]
+    }
+  },
+  "devDependencies": {
+    "oao": "^0.10.4"
+  }
+}

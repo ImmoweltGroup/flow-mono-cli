@@ -1,0 +1,21 @@
+{
+  "name": "flow-mono-cli-example-package-1",
+  "version": "0.0.0-development",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "flow": "flow"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "private": true,
+  "workspaces": ["packages/*"],
+  "dependencies": {
+    "flow-mono-cli-example-package-2": "0.0.0-development"
+  },
+  "devDependencies": {
+    "flow-bin": "^0.57.3",
+    "flow-typed": "^2.2.1"
+  }
+}

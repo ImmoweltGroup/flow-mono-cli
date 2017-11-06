@@ -1,0 +1,9 @@
+# See https://help.github.com/ignore-files/ for more about ignoring files.
+
+# dependencies
+node_modules
+packages/*/node_modules
+packages/*/.flowconfig
+
+# third party typings
+packages/*/flow-typed/npm
