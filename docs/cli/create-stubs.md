@@ -14,7 +14,9 @@ $ flow-mono create-stubs
 ```
 
 #### Options and Arguments
-##### `-u, --use-root` (Optional)
+
+##### `-u, --use-root` \(Optional\)
+
 Installs all stubs in the root of your mono-repo.
 
 #### Configuration
@@ -30,3 +32,6 @@ By default this command will not do anything since automatically stubbing all 2n
 ```
 
 This will resolve all mono-repo packages that have `immutable-js` as a dependency, resolve `immutable-js` own dependencies and create stubs for them.
+
+
+
