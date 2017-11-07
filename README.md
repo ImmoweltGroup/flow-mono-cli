@@ -45,6 +45,7 @@ afterwards make sure that you've got your workspaces configured in the root `pac
 
 ## Commands and Documentation
 
+* [Introduction](/docs/introduction/README.md)
 * [`flow-mono create-symlinks`](/docs/cli/create-symlinks.md)
 * [`flow-mono install-types`](/docs/cli/install-types.md)
 * [`flow-mono create-stubs`](/docs/cli/create-stubs.md)
