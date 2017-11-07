@@ -14,4 +14,8 @@ $ flow-mono align-versions
 
 #### Options and Arguments
 
-_This command does not have any arguments or options_
+_This command does not have any arguments or options as of now_
+
+#### Configuration
+
+_This command does not support configuration as of now_

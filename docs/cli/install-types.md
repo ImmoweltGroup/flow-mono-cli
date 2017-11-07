@@ -18,3 +18,7 @@ $ flow-mono install-types --ignoreDeps=peer --overwrite
 #### Options and Arguments
 
 All given options are being propagated to each `flow-typed intall` child process in the packages.
+
+#### Configuration
+
+_This command does not support configuration as of now_
