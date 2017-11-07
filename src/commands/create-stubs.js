@@ -29,10 +29,8 @@ module.exports = async function createDependencyFlowTypeStubs(
 
     logger.info(`Creating in-direct dependency stubs in "${targetCwd}"`);
 
-    await Promise.all(
-      allowedStubDependencyKeys.map(key =>
-        flowTyped.createStubsForInDirectDependencies(targetCwd, key)
-      )
-    );
+    for (let key of allowedStubDependencyKeys) {
+      await flowTyped.createStubsForInDirectDependencies(targetCwd, key);
+    }
   }
 };

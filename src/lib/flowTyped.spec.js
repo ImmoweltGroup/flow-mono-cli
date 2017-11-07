@@ -4,6 +4,7 @@ jest.mock('./logger.js');
 jest.mock('./dependency.js');
 jest.mock('./exec.js');
 
+const fs = require('fs');
 const exec: any = require('./exec.js');
 const dependency: any = require('./../lib/dependency.js');
 const flowTypedUtils = require('./flowTyped.js');
@@ -29,7 +30,22 @@ describe('flowTypedUtils.parseArgs()', () => {
 });
 
 describe('flowTypedUtils.createStubsForInDirectDependencies()', () => {
+  let existsSync;
+  let writeFileSync;
+  let unlinkSync;
+
+  beforeEach(() => {
+    existsSync = jest.spyOn(fs, 'existsSync').mockImplementation(jest.fn());
+    writeFileSync = jest
+      .spyOn(fs, 'writeFileSync')
+      .mockImplementation(jest.fn());
+    unlinkSync = jest.spyOn(fs, 'unlinkSync').mockImplementation(jest.fn());
+  });
+
   afterEach(() => {
+    existsSync.mockRestore();
+    writeFileSync.mockRestore();
+    unlinkSync.mockRestore();
     dependency.mergeDependenciesIntoMap.mockReset();
     dependency.readPackageJson.mockReset();
     exec.async.mockRestore();
@@ -61,5 +77,27 @@ describe('flowTypedUtils.createStubsForInDirectDependencies()', () => {
       ['create-stub', 'foo@1.2.0', 'bar@1.0.0', 'baz@3.20.1'],
       {cwd: '/foo/bar', localDir: '/foo/bar', preferLocal: true}
     ]);
+  });
+
+  it('should create a .flowconfig file if none exists in the given cwd since flow-typed would crash otherwise.', async () => {
+    dependency.mergeDependenciesIntoMap.mockReturnValueOnce({
+      foo: '1.2.0',
+      bar: '1.0.0',
+      baz: '3.20.1'
+    });
+    existsSync.mockReturnValue(false);
+
+    await flowTypedUtils.createStubsForInDirectDependencies(
+      '/foo/bar',
+      'some-package'
+    );
+
+    expect(writeFileSync.mock.calls).toEqual([
+      [
+        '/foo/bar/.flowconfig',
+        '# Intermediate .flowconfig file created by `flow-mono-cli'
+      ]
+    ]);
+    expect(unlinkSync.mock.calls).toEqual([['/foo/bar/.flowconfig']]);
   });
 });

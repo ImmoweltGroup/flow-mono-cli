@@ -1,5 +1,6 @@
 // @flow
 
+const fs = require('fs');
 const {join} = require('path');
 const exec = require('./exec.js');
 const dependency = require('./dependency.js');
@@ -49,23 +50,19 @@ const flowTypedUtils = {
    */
   async createStubsForInDirectDependencies(cwd: string, dependencyKey: string) {
     const dependencyPath = join(cwd, 'node_modules', dependencyKey);
+    const flowConfigPath = join(cwd, '.flowconfig');
     const pkg = await dependency.readPackageJson(dependencyPath);
     const dependencies = dependency.mergeDependenciesIntoMap(pkg);
-    // Avoid creating stubs for the dependency itself
-    const filteredDependencyKeys = Object.keys(dependencies).filter(
-      key => key !== dependencyKey
-    );
-    const dependencyIdentifiers = filteredDependencyKeys.map(key => {
-      const version = dependencies[key];
+    const dependencyIdentifiers = Object.keys(dependencies)
+      .filter(
+        // Avoid creating stubs for the dependency itself
+        key => key !== dependencyKey
+      )
+      .map(key => {
+        const version = dependencies[key];
 
-      return `${key}@${version}`;
-    });
-
-    // Avoid executing an `flow-typed create-stub` without arguments.
-    if (!dependencyIdentifiers.length) {
-      return;
-    }
-
+        return `${key}@${version}`;
+      });
     const dependencyIdentifiersTree = dependencyIdentifiers
       .map(
         (id, index) =>
@@ -74,14 +71,31 @@ const flowTypedUtils = {
             : '    ├──'} ${id}`
       )
       .join('\n');
+
+    // Avoid executing an `flow-typed create-stub` without arguments.
+    if (!dependencyIdentifiers.length) {
+      return;
+    }
+
     logger.info(`    ${dependencyKey}
 ${dependencyIdentifiersTree}`);
+
+    if (!fs.existsSync(flowConfigPath)) {
+      fs.writeFileSync(
+        flowConfigPath,
+        '# Intermediate .flowconfig file created by `flow-mono-cli'
+      );
+    }
 
     await exec.async(`flow-typed`, ['create-stub', ...dependencyIdentifiers], {
       preferLocal: true,
       localDir: cwd,
       cwd
     });
+
+    if (!fs.existsSync(flowConfigPath)) {
+      fs.unlinkSync(flowConfigPath);
+    }
   }
 };
 

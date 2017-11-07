@@ -9,9 +9,7 @@
     "create-symlinks": "./../.bin/flow-mono create-symlinks build/.flowconfig",
     "install-types":
       "./../.bin/flow-mono install-types --overwrite --ignoreDeps=peer",
-    "precreate-stubs": "touch .flowconfig",
     "create-stubs": "./../.bin/flow-mono create-stubs --use-root",
-    "postcreate-stubs": "rm .flowconfig",
     "test": "yarn run flow",
     "flow": "oao all --parallel flow",
     "flow:stop": "oao all --parallel 'flow stop'"
