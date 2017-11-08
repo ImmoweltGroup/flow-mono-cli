@@ -51,6 +51,7 @@ const flowTypedUtils = {
   async createStubsForInDirectDependencies(cwd: string, dependencyKey: string) {
     const dependencyPath = join(cwd, 'node_modules', dependencyKey);
     const flowConfigPath = join(cwd, '.flowconfig');
+    const hasNoFlowConfigInCwd = fs.existsSync(flowConfigPath) === false;
     const pkg = await dependency.readPackageJson(dependencyPath);
     const dependencies = dependency.mergeDependenciesIntoMap(pkg);
     const dependencyIdentifiers = Object.keys(dependencies)
@@ -80,7 +81,7 @@ const flowTypedUtils = {
     logger.info(`    ${dependencyKey}
 ${dependencyIdentifiersTree}`);
 
-    if (!fs.existsSync(flowConfigPath)) {
+    if (hasNoFlowConfigInCwd) {
       fs.writeFileSync(
         flowConfigPath,
         '# Intermediate .flowconfig file created by `flow-mono-cli'
@@ -93,7 +94,7 @@ ${dependencyIdentifiersTree}`);
       cwd
     });
 
-    if (!fs.existsSync(flowConfigPath)) {
+    if (hasNoFlowConfigInCwd) {
       fs.unlinkSync(flowConfigPath);
     }
   }
