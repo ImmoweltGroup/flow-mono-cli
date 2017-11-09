@@ -70,7 +70,7 @@
     "@inkdpixels/release-notes-generator": "^1.0.0",
     "babel-cli": "^6.26.0",
     "eslint": "^4.9.0",
-    "flow-bin": "^0.58.0",
+    "flow-bin": "^0.59.0",
     "flow-copy-source": "^1.2.1",
     "flow-typed": "^2.2.1",
     "husky": "^0.14.3",
