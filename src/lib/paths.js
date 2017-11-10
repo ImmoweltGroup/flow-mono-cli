@@ -50,9 +50,10 @@ const pathUtils = {
               return false;
             }
 
-            const {dependencies, devDependencies} = await file.readJson(
-              packageJsonPath
-            );
+            const {
+              dependencies = {},
+              devDependencies = {}
+            } = await file.readJson(packageJsonPath);
 
             if (dependencies['flow-bin'] || devDependencies['flow-bin']) {
               packagePaths.push(packagePath);
