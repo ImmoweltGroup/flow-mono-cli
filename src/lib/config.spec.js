@@ -12,7 +12,9 @@ describe('config.resolveAndReadConfig()', () => {
   });
 
   afterEach(() => {
-    findConfigUp.mockRestore();
+    // $FlowFixMe: Ignore errors since the jest type-def is out of date.
+    jest.restoreAllMocks();
+    jest.clearAllMocks();
   });
 
   it('should be a function', () => {

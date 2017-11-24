@@ -15,9 +15,9 @@ const createDependencyFlowTypeStubs = require('./create-stubs.js');
 
 describe('create-stubs', () => {
   afterEach(() => {
-    config.resolveAndReadConfig.mockReset();
-    path.resolveMonoRepoPackagePaths.mockReset();
-    dependency.mergeDependenciesIntoList.mockReset();
+    // $FlowFixMe: Ignore errors since the jest type-def is out of date.
+    jest.restoreAllMocks();
+    jest.clearAllMocks();
   });
 
   it('should export an function', () => {

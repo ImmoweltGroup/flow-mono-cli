@@ -16,9 +16,9 @@ const installFlowTypes = require('./install-types.js');
 
 describe('install-types', () => {
   afterEach(() => {
-    path.resolveMonoRepoPackagePaths.mockReset();
-    dependency.mergeDependenciesIntoList.mockReset();
-    flowTyped.parseArgs.mockReset();
+    // $FlowFixMe: Ignore errors since the jest type-def is out of date.
+    jest.restoreAllMocks();
+    jest.clearAllMocks();
   });
 
   it('should export an function', () => {

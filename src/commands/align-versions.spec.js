@@ -18,7 +18,9 @@ describe('align-versions', () => {
   });
 
   afterEach(() => {
-    prompt.mockRestore();
+    // $FlowFixMe: Ignore errors since the jest type-def is out of date.
+    jest.restoreAllMocks();
+    jest.clearAllMocks();
   });
 
   it('should export an function', () => {

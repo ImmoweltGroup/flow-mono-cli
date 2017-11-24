@@ -43,12 +43,9 @@ describe('flowTypedUtils.createStubsForInDirectDependencies()', () => {
   });
 
   afterEach(() => {
-    existsSync.mockRestore();
-    writeFileSync.mockRestore();
-    unlinkSync.mockRestore();
-    dependency.mergeDependenciesIntoMap.mockReset();
-    dependency.readPackageJson.mockReset();
-    exec.async.mockRestore();
+    // $FlowFixMe: Ignore errors since the jest type-def is out of date.
+    jest.restoreAllMocks();
+    jest.clearAllMocks();
   });
 
   it('should be a function', () => {

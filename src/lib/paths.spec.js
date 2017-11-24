@@ -6,16 +6,16 @@ const pathUtils = require('./paths.js');
 const file: any = require('./file.js');
 
 describe('pathUtils.resolveMonoRepoRootPath()', () => {
-  let findUp;
-
   beforeEach(() => {
-    findUp = jest
+    jest
       .spyOn(pathUtils._utils, 'findUp')
       .mockImplementation(jest.fn(() => '/foo/bar/package.json'));
   });
 
   afterEach(() => {
-    findUp.mockRestore();
+    // $FlowFixMe: Ignore errors since the jest type-def is out of date.
+    jest.restoreAllMocks();
+    jest.clearAllMocks();
   });
 
   it('should be a function', () => {
@@ -30,11 +30,10 @@ describe('pathUtils.resolveMonoRepoRootPath()', () => {
 });
 
 describe('pathUtils.resolveMonoRepoPackagePaths()', () => {
-  let resolveMonoRepoRootPath;
   let globAsync;
 
   beforeEach(() => {
-    resolveMonoRepoRootPath = jest
+    jest
       .spyOn(pathUtils, 'resolveMonoRepoRootPath')
       .mockImplementation(jest.fn(() => '/foo/bar'));
     globAsync = jest
@@ -43,10 +42,9 @@ describe('pathUtils.resolveMonoRepoPackagePaths()', () => {
   });
 
   afterEach(() => {
-    resolveMonoRepoRootPath.mockRestore();
-    globAsync.mockRestore();
-    file.readJson.mockReset();
-    file.existsAsync.mockReset();
+    // $FlowFixMe: Ignore errors since the jest type-def is out of date.
+    jest.restoreAllMocks();
+    jest.clearAllMocks();
   });
 
   it('should be a function', () => {

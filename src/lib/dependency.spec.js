@@ -96,7 +96,9 @@ describe('dependency.getDependencyVersion()', () => {
 
 describe('dependency.readPackageJson()', () => {
   afterEach(() => {
-    file.existsAsync.mockReset();
+    // $FlowFixMe: Ignore errors since the jest type-def is out of date.
+    jest.restoreAllMocks();
+    jest.clearAllMocks();
   });
 
   it('should be a function', () => {
@@ -133,8 +135,9 @@ describe('dependency.updateDependency()', () => {
   });
 
   afterEach(() => {
-    readPackageJson.mockRestore();
-    writeFile.mockRestore();
+    // $FlowFixMe: Ignore errors since the jest type-def is out of date.
+    jest.restoreAllMocks();
+    jest.clearAllMocks();
   });
 
   it('should be a function', () => {
@@ -175,7 +178,9 @@ describe('dependency.hasRootVersionMisMatch()', () => {
   });
 
   afterEach(() => {
-    readPackageJson.mockRestore();
+    // $FlowFixMe: Ignore errors since the jest type-def is out of date.
+    jest.restoreAllMocks();
+    jest.clearAllMocks();
   });
 
   it('should be a function', () => {
@@ -238,10 +243,9 @@ describe('dependency.ensureDependencyScopeExists()', () => {
   });
 
   afterEach(() => {
-    isScopedDependency.mockRestore();
-    getScopeForDependency.mockRestore();
-    existsSync.mockRestore();
-    mkdirSync.mockRestore();
+    // $FlowFixMe: Ignore errors since the jest type-def is out of date.
+    jest.restoreAllMocks();
+    jest.clearAllMocks();
   });
 
   it('should be a function', () => {
@@ -291,27 +295,23 @@ describe('dependency.ensureDependencyScopeExists()', () => {
 
 describe('dependency.createSymlinkForDependency()', () => {
   let ensureDependencyScopeExists;
-  let getScopeForDependency;
-  let isScopedDependency;
 
   beforeEach(() => {
     ensureDependencyScopeExists = jest
       .spyOn(dependency, 'ensureDependencyScopeExists')
       .mockImplementation(jest.fn());
-    getScopeForDependency = jest
+    jest
       .spyOn(dependency, 'getScopeForDependency')
       .mockImplementation(jest.fn(() => '@foo'));
-    isScopedDependency = jest
+    jest
       .spyOn(dependency, 'isScopedDependency')
       .mockImplementation(jest.fn(() => false));
   });
 
   afterEach(() => {
-    ensureDependencyScopeExists.mockRestore();
-    getScopeForDependency.mockRestore();
-    isScopedDependency.mockRestore();
-    file.createSymlink.mockReset();
-    file.existsAsync.mockReset();
+    // $FlowFixMe: Ignore errors since the jest type-def is out of date.
+    jest.restoreAllMocks();
+    jest.clearAllMocks();
   });
 
   it('should be a function', () => {

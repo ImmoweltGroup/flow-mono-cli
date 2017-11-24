@@ -15,7 +15,9 @@ describe('fileUtils.existsAsync()', () => {
   });
 
   afterEach(() => {
-    accessAsync.mockRestore();
+    // $FlowFixMe: Ignore errors since the jest type-def is out of date.
+    jest.restoreAllMocks();
+    jest.clearAllMocks();
   });
 
   it('should be a function', () => {
@@ -51,8 +53,9 @@ describe('fileUtils.readJson()', () => {
   });
 
   afterEach(() => {
-    readFileAsync.mockRestore();
-    fatal.mockRestore();
+    // $FlowFixMe: Ignore errors since the jest type-def is out of date.
+    jest.restoreAllMocks();
+    jest.clearAllMocks();
   });
 
   it('should be a function', () => {
@@ -86,7 +89,9 @@ describe('fileUtils.writeFile()', () => {
   });
 
   afterEach(() => {
-    writeFileAsync.mockRestore();
+    // $FlowFixMe: Ignore errors since the jest type-def is out of date.
+    jest.restoreAllMocks();
+    jest.clearAllMocks();
   });
 
   it('should be a function', () => {
