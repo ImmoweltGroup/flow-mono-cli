@@ -29,6 +29,6 @@ This is how an example mono-repository could look like
 |   |   ├── flow-typed  
 |   |   ├── node_modules
 |   |   └── package.json
-├── .monoflowrc          // Configuration of the CLI.
+├── .flowmonorc          // Configuration of the CLI.
 └── package.json         // The `flow-mono-cli` would need to be added to the `devDependencies` in the root `package.json`
 ```

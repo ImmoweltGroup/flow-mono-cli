@@ -20,7 +20,7 @@ The only argument provided should be the relative path to the fallback / singlet
 
 #### Configuration
 
-Additionally you can specify a blacklist of packages that should be ignored entirely from being symlinked. To do so just create a `.monoflowrc` or a `mono-flow` section in your repositories root `package.json`, paste in the example and adjust as you like!
+Additionally you can specify a blacklist of packages that should be ignored entirely from being symlinked. To do so just create a `.flowmonorc` or a `flow-mono` section in your repositories root `package.json`, paste in the example and adjust as you like!
 
 ```json
 {
