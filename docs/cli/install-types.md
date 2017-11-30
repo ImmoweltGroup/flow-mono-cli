@@ -21,4 +21,10 @@ All given options are being propagated to each `flow-typed intall` child process
 
 #### Configuration
 
-_This command does not support configuration as of now_
+This command respects the `flowTypedCommandExecRetries` configuration option, which might be useful if you encounter problems due to network errors while flow-typed is running, .e.g.
+
+```json
+{
+  "flowTypedCommandExecRetries": 3
+}
+```

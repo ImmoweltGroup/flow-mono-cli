@@ -33,5 +33,10 @@ By default this command will not do anything since automatically stubbing all 2n
 
 This will resolve all mono-repo packages that have `immutable-js` as a dependency, resolve `immutable-js` own dependencies and create stubs for them.
 
+This command also respects the `flowTypedCommandExecRetries` configuration option, which might be useful if you encounter problems due to network errors while flow-typed is running, .e.g.
 
-
+```json
+{
+  "flowTypedCommandExecRetries": 3
+}
+```

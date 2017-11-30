@@ -6,6 +6,7 @@ const _utils = {
   findConfigUp
 };
 const defaults = {
+  flowTypedCommandExecRetries: 1,
   'create-symlinks': {
     ignore: []
   },

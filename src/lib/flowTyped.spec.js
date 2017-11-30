@@ -69,7 +69,7 @@ describe('flowTypedUtils.createStubsForInDirectDependencies()', () => {
     expect(dependency.readPackageJson.mock.calls).toEqual([
       ['/foo/bar/node_modules/some-package']
     ]);
-    expect(exec.async.mock.calls[0]).toEqual([
+    expect(exec.asyncWithRetries.mock.calls[0]).toEqual([
       'flow-typed',
       ['create-stub', 'foo@1.2.0', 'bar@1.0.0', 'baz@3.20.1'],
       {cwd: '/foo/bar', localDir: '/foo/bar', preferLocal: true}

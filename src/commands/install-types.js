@@ -16,7 +16,7 @@ module.exports = async function installFlowTypes() {
   // We will update the flow-typed cache first to avoid errors when running the install step in parallel.
   //
   logger.info(`Updating the global "flow-typed" defintions cache.`);
-  await exec.async(`flow-typed`, ['update-cache'], {
+  await exec.asyncWithRetries(`flow-typed`, ['update-cache'], {
     preferLocal: true,
     localDir: rootPath,
     cwd: rootPath
@@ -30,7 +30,7 @@ module.exports = async function installFlowTypes() {
       try {
         const args = flowTyped.parseArgs();
 
-        await exec.async(`flow-typed`, ['install'].concat(args), {
+        await exec.asyncWithRetries(`flow-typed`, ['install'].concat(args), {
           preferLocal: true,
           localDir: packagePath,
           cwd: packagePath

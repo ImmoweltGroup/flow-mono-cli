@@ -88,11 +88,15 @@ ${dependencyIdentifiersTree}`);
       );
     }
 
-    await exec.async(`flow-typed`, ['create-stub', ...dependencyIdentifiers], {
-      preferLocal: true,
-      localDir: cwd,
-      cwd
-    });
+    await exec.asyncWithRetries(
+      `flow-typed`,
+      ['create-stub', ...dependencyIdentifiers],
+      {
+        preferLocal: true,
+        localDir: cwd,
+        cwd
+      }
+    );
 
     if (hasNoFlowConfigInCwd) {
       fs.unlinkSync(flowConfigPath);
