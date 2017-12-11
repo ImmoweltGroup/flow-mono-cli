@@ -12,10 +12,10 @@
   "private": true,
   "workspaces": ["packages/*"],
   "dependencies": {
-    "log-fancy": "^1.3.0"
+    "log-fancy": "1.3.0"
   },
   "devDependencies": {
-    "flow-bin": "^0.57.3",
-    "flow-typed": "^2.2.1"
+    "flow-bin": "0.57.3",
+    "flow-typed": "2.2.3"
   }
 }
