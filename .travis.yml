@@ -2,10 +2,6 @@ sudo: false
 language: node_js
 notifications:
   email: false
-before_install:
-  - npm install -g greenkeeper-lockfile@1
-before_script:
-  - greenkeeper-lockfile-update
 script:
   # Unit test & code style
   - npm test
@@ -17,8 +13,6 @@ script:
   - yarn bootstrap
   - yarn test
   - cd ..
-after_script:
-  - greenkeeper-lockfile-upload
 after_success:
   - npm run semantic-release
 branches:

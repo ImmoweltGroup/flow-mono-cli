@@ -3,10 +3,10 @@
 # flow-mono-cli
 
 [![Powered by Immowelt](https://img.shields.io/badge/powered%20by-immowelt-yellow.svg?colorB=ffb200)](https://stackshare.io/immowelt-group/)
-[![Greenkeeper badge](https://badges.greenkeeper.io/ImmoweltGroup/flow-mono-cli.svg)](https://greenkeeper.io/)
 [![Build Status](https://travis-ci.org/ImmoweltGroup/flow-mono-cli.svg?branch=master)](https://travis-ci.org/ImmoweltGroup/flow-mono-cli)
 [![Dependency Status](https://david-dm.org/ImmoweltGroup/flow-mono-cli.svg)](https://david-dm.org/ImmoweltGroup/flow-mono-cli)
 [![devDependency Status](https://david-dm.org/ImmoweltGroup/flow-mono-cli/dev-status.svg)](https://david-dm.org/ImmoweltGroup/flow-mono-cli#info=devDependencies&view=table)
+[![Renovate enabled](https://img.shields.io/badge/renovate-enabled-brightgreen.svg)](https://renovateapp.com/)
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 
 `flow-mono-cli` is a command line interface that aims to [solve](https://github.com/facebook/flow/issues/4738) [a](https://github.com/facebook/flow/issues/5107) [few](https://github.com/flowtype/flow-typed/issues/1391) [issues](https://github.com/lerna/lerna/issues/891) [while](https://github.com/facebook/flow/issues/869) working with flow typed codebases in a mono-repo.
