@@ -26,21 +26,21 @@
     "yarn"
   ],
   "scripts": {
-    "test": "npm run lint && npm run flow && npm run jest:coverage",
+    "test": "yarn run lint && yarn run flow && yarn run jest:coverage",
     "lint": "eslint src",
     "jest": "jest",
-    "jest:watch": "npm run jest -- --watch",
-    "jest:coverage": "npm run jest -- --coverage",
+    "jest:watch": "yarn run jest -- --watch",
+    "jest:coverage": "yarn run jest -- --coverage",
     "build:clean": "rimraf dist",
     "build:babel": "babel src --out-dir dist --ignore spec.js",
     "build:flow": "flow-copy-source -v src dist --ignore='*.spec.js'",
-    "build": "npm run build:babel && npm run build:flow",
-    "dev": "nodemon --quiet --watch src --exec 'npm run build'",
+    "build": "yarn run build:babel && yarn run build:flow",
+    "dev": "nodemon --quiet --watch src --exec 'yarn run build'",
     "flow": "flow",
     "flow-typed": "flow-typed",
     "flow-typed-install": "flow-typed install --ignoreDeps=peer --overwrite",
-    "prepare": "npm run flow-typed-install || true",
-    "prepublishOnly": "npm run build",
+    "prepare": "yarn run flow-typed-install || true",
+    "prepublishOnly": "yarn run build",
     "precommit": "lint-staged && npm test",
     "semantic-release":
       "semantic-release pre && npm publish && semantic-release post"

@@ -15,28 +15,28 @@ git clone https://github.com/your-username/flow-mono-cli.git
 ### Building
 Running the `build` task will transpile the code and move all flow annotations into separate files.
 ```
-npm run build
+yarn run build
 ```
 
 ### Testing, Type-Checking with Flow and Linting
 To run the tests:
 ```
-npm run test
+yarn run test
 ```
 
 To continuously watch and run the unit-tests, execute the following:
 ```
-npm run jest:watch
+yarn run jest:watch
 ```
 
 To perform linting with `eslint`, run the following:
 ```
-npm run lint
+yarn run lint
 ```
 
 To perform a single check of the types with `flow`, run the following:
 ```
-npm run flow
+yarn run flow
 ```
 
 ### New Features
