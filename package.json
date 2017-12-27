@@ -4,7 +4,8 @@
   "private": false,
   "author": "Immonet dev team <aegaeon@immonet.de> (https://immonet.de)",
   "license": "MIT",
-  "description": "A command line interface that aims to solve a few issues while working with flow typed codebases in a mono-repo.",
+  "description":
+    "A command line interface that aims to solve a few issues while working with flow typed codebases in a mono-repo.",
   "bin": {
     "flow-mono": "./.bin/flow-mono"
   },
@@ -25,29 +26,27 @@
     "yarn"
   ],
   "scripts": {
-    "test": "npm run lint && npm run flow && npm run jest:coverage",
+    "test": "yarn run lint && yarn run flow && yarn run jest:coverage",
     "lint": "eslint src",
     "jest": "jest",
-    "jest:watch": "npm run jest -- --watch",
-    "jest:coverage": "npm run jest -- --coverage",
+    "jest:watch": "yarn run jest -- --watch",
+    "jest:coverage": "yarn run jest -- --coverage",
     "build:clean": "rimraf dist",
     "build:babel": "babel src --out-dir dist --ignore spec.js",
     "build:flow": "flow-copy-source -v src dist --ignore='*.spec.js'",
-    "build": "npm run build:babel && npm run build:flow",
-    "dev": "nodemon --quiet --watch src --exec 'npm run build'",
+    "build": "yarn run build:babel && yarn run build:flow",
+    "dev": "nodemon --quiet --watch src --exec 'yarn run build'",
     "flow": "flow",
     "flow-typed": "flow-typed",
     "flow-typed-install": "flow-typed install --ignoreDeps=peer --overwrite",
-    "prepare": "npm run flow-typed-install || true",
-    "prepublishOnly": "npm run build",
+    "prepare": "yarn run flow-typed-install || true",
+    "prepublishOnly": "yarn run build",
     "precommit": "lint-staged && npm test",
-    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
+    "semantic-release":
+      "semantic-release pre && npm publish && semantic-release post"
   },
   "lint-staged": {
-    "**/*.{js,json,css}": [
-      "prettier --write",
-      "git add"
-    ]
+    "**/*.{js,json,css}": ["prettier --write", "git add"]
   },
   "dependencies": {
     "commander": "2.12.2",
@@ -63,18 +62,18 @@
   },
   "devDependencies": {
     "@immowelt/babel-preset-immowelt-node": "1.1.0",
-    "@immowelt/eslint-config-immowelt-react": "2.0.2",
+    "@immowelt/eslint-config-immowelt-react": "2.0.3",
     "@immowelt/jest-preset-node": "1.0.1",
     "@immowelt/styleguide-javascript": "1.0.11",
     "@inkdpixels/commit-analyzer": "1.0.1",
     "@inkdpixels/release-notes-generator": "1.0.1",
     "babel-cli": "6.26.0",
-    "eslint": "4.13.1",
+    "eslint": "4.14.0",
     "flow-bin": "0.61.0",
     "flow-copy-source": "1.2.1",
     "flow-typed": "2.2.3",
     "husky": "0.14.3",
-    "jest": "21.2.1",
+    "jest": "22.0.4",
     "lint-staged": "6.0.0",
     "prettier": "1.9.2",
     "rimraf": "2.6.2",
