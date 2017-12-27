@@ -63,7 +63,7 @@
   },
   "devDependencies": {
     "@immowelt/babel-preset-immowelt-node": "1.1.0",
-    "@immowelt/eslint-config-immowelt-react": "2.0.2",
+    "@immowelt/eslint-config-immowelt-react": "2.0.3",
     "@immowelt/jest-preset-node": "1.0.1",
     "@immowelt/styleguide-javascript": "1.0.11",
     "@inkdpixels/commit-analyzer": "1.0.1",
