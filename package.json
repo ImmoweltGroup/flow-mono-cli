@@ -4,7 +4,8 @@
   "private": false,
   "author": "Immonet dev team <aegaeon@immonet.de> (https://immonet.de)",
   "license": "MIT",
-  "description": "A command line interface that aims to solve a few issues while working with flow typed codebases in a mono-repo.",
+  "description":
+    "A command line interface that aims to solve a few issues while working with flow typed codebases in a mono-repo.",
   "bin": {
     "flow-mono": "./.bin/flow-mono"
   },
@@ -41,13 +42,11 @@
     "prepare": "npm run flow-typed-install || true",
     "prepublishOnly": "npm run build",
     "precommit": "lint-staged && npm test",
-    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
+    "semantic-release":
+      "semantic-release pre && npm publish && semantic-release post"
   },
   "lint-staged": {
-    "**/*.{js,json,css}": [
-      "prettier --write",
-      "git add"
-    ]
+    "**/*.{js,json,css}": ["prettier --write", "git add"]
   },
   "dependencies": {
     "commander": "2.12.2",
@@ -63,7 +62,7 @@
   },
   "devDependencies": {
     "@immowelt/babel-preset-immowelt-node": "1.1.0",
-    "@immowelt/eslint-config-immowelt-react": "2.0.2",
+    "@immowelt/eslint-config-immowelt-react": "2.0.3",
     "@immowelt/jest-preset-node": "1.0.1",
     "@immowelt/styleguide-javascript": "1.0.11",
     "@inkdpixels/commit-analyzer": "1.0.1",
