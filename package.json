@@ -49,7 +49,7 @@
     "**/*.{js,json,css}": ["prettier --write", "git add"]
   },
   "dependencies": {
-    "commander": "2.12.2",
+    "commander": "2.13.0",
     "execa": "0.8.0",
     "find-config-up": "1.1.0",
     "find-up": "2.1.0",
