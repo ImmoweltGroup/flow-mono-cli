@@ -68,7 +68,7 @@
     "@inkdpixels/commit-analyzer": "1.0.1",
     "@inkdpixels/release-notes-generator": "1.0.1",
     "babel-cli": "6.26.0",
-    "eslint": "4.15.0",
+    "eslint": "4.16.0",
     "flow-bin": "0.63.1",
     "flow-copy-source": "1.2.1",
     "flow-typed": "2.2.3",
