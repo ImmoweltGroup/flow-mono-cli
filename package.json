@@ -71,7 +71,7 @@
     "eslint": "4.16.0",
     "flow-bin": "0.64.0",
     "flow-copy-source": "1.2.2",
-    "flow-typed": "2.2.3",
+    "flow-typed": "2.3.0",
     "husky": "0.14.3",
     "jest": "22.1.4",
     "lint-staged": "6.1.0",
