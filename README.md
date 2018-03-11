@@ -15,7 +15,7 @@ It provides a set of commands that we found to be very useful *if you want your 
 
 ## Features
 
-* Creates symlinks for flow to be able to resolve dependencies which where installed/hoisted into the root `node_modules` of your mono-repo into each packages `node_modules`.
+* Creates symlinks for flow to be able to resolve dependencies which were installed/hoisted into the root `node_modules` of your mono-repo into each packages `node_modules`.
 * Smart resolve mechanism of mono-repo packages with a dependency to `flow-bin`, based on the `workspaces` config in your root `package.json`.
 * Keeps your `flow-bin` and `flow-typed` versions in sync across your mono-repo packages.
 * Maintains a single or fallback `.flowconfig` across all packages.
