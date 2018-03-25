@@ -35,10 +35,13 @@ const pathUtils = {
     const {workspaces = []} = await file.readJson(
       join(rootPath, 'package.json')
     );
+    const workspacesArray = Array.isArray(workspaces) 
+      ? workspaces 
+      : workspaces.packages || [];
     const packagePaths = [];
 
     await Promise.all(
-      workspaces.map(async pattern => {
+      workspacesArray.map(async pattern => {
         const paths = await _utils.globAsync(join(rootPath, pattern));
 
         await Promise.all(
