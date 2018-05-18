@@ -15,7 +15,7 @@ module.exports = async function installFlowTypes() {
   //
   // We will update the flow-typed cache first to avoid errors when running the install step in parallel.
   //
-  logger.info(`Updating the global "flow-typed" defintions cache.`);
+  logger.info(`Updating the global "flow-typed" definitions cache.`);
   await exec.asyncWithRetries(`flow-typed`, ['update-cache'], {
     preferLocal: true,
     localDir: rootPath,
@@ -23,7 +23,7 @@ module.exports = async function installFlowTypes() {
   });
 
   logger.info(
-    `Installing "flow-typed" defintions for dependencies in ${packagePaths.length} packages.`
+    `Installing "flow-typed" definitions for dependencies in ${packagePaths.length} packages.`
   );
   await Promise.all(
     packagePaths.map(async packagePath => {
@@ -39,12 +39,12 @@ module.exports = async function installFlowTypes() {
         const {name} = await dependency.readPackageJson(packagePath);
 
         logger.fatal(
-          `Failed installing "flow-typed" defintions in package "${name}".\n\n`,
+          `Failed installing "flow-typed" definitions in package "${name}".\n\n`,
           e.message
         );
       }
     })
   );
 
-  logger.success('Installing "flow-typed" defintions done.');
+  logger.success('Installing "flow-typed" definitions done.');
 };
