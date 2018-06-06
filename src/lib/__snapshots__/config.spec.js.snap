@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`config.resolveAndReadConfig() should call the "find-config-up" package and return the resolved config 1`] = `
+Object {
+  "create-stubs": Object {
+    "dependencies": Array [],
+  },
+  "create-symlinks": Object {
+    "ignore": Array [],
+  },
+  "flowTypedCommandExecRetries": 1,
+  "foo": "bar",
+}
+`;

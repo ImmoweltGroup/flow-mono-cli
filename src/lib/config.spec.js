@@ -3,12 +3,15 @@
 const config = require('./config.js');
 
 describe('config.resolveAndReadConfig()', () => {
-  let findConfigUp;
+  let search;
 
   beforeEach(() => {
-    findConfigUp = jest
-      .spyOn(config._utils, 'findConfigUp')
-      .mockImplementation(jest.fn());
+    search = jest.fn();
+    jest.spyOn(config._utils, 'cosmiconfig').mockImplementation(
+      jest.fn(() => ({
+        search
+      }))
+    );
   });
 
   afterEach(() => {
@@ -22,10 +25,10 @@ describe('config.resolveAndReadConfig()', () => {
   });
 
   it('should call the "find-config-up" package and return the resolved config', async () => {
-    findConfigUp.mockReturnValue({foo: 'bar'});
+    search.mockReturnValue({config: {foo: 'bar'}});
 
     const cfg = await config.resolveAndReadConfig();
 
-    expect(cfg).toEqual({foo: 'bar'});
+    expect(cfg).toMatchSnapshot();
   });
 });
