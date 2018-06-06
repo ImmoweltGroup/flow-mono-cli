@@ -1,9 +1,10 @@
 // @flow
 
-const findConfigUp = require('find-config-up');
+const cosmiconfig = require('cosmiconfig');
+const merge = require('lodash.merge');
 
 const _utils = {
-  findConfigUp
+  cosmiconfig
 };
 const defaults = {
   flowTypedCommandExecRetries: 1,
@@ -19,13 +20,20 @@ const config = {
   _utils,
 
   async resolveAndReadConfig(): Promise<typeof defaults> {
-    const config: typeof defaults = await _utils.findConfigUp({
-      rawConfigFileName: '.flowmonorc',
-      packageJsonProperty: 'flow-mono',
-      defaults
+    const explorer = _utils.cosmiconfig('flow-mono', {
+      searchPlaces: [
+        'package.json',
+        '.flowmonorc',
+        `.flowmonorc.json`,
+        `.flowmonorc.yaml`,
+        `.flowmonorc.yml`,
+        `.flowmonorc.js`,
+        `flowmono.config.js`
+      ]
     });
+    const results = await explorer.search();
 
-    return config;
+    return merge({}, defaults, results.config);
   }
 };
 
