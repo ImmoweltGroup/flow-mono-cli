@@ -33,7 +33,9 @@ const config = {
     });
     const results = await explorer.search();
 
-    return merge({}, defaults, results.config);
+    return results && results.config
+      ? merge({}, defaults, results.config)
+      : defaults;
   }
 };
 
