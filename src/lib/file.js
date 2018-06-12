@@ -1,20 +1,29 @@
 // @flow
 
 const fs = require('fs');
-const makeSymlinks = require('make-symlinks');
+const {basename, join} = require('path');
 const {promisify} = require('util');
 const logger = require('./logger.js');
 
 const _utils = {
   readFileAsync: promisify(fs.readFile),
   writeFileAsync: promisify(fs.writeFile),
-  accessAsync: promisify(fs.access)
+  accessAsync: promisify(fs.access),
+  statAsync: promisify(fs.stat),
+  symlinkAsync: promisify(fs.symlink)
 };
 
 const fileUtils = {
   _utils,
 
-  createSymlink: makeSymlinks,
+  async createSymlink(target: string, distDir: string) {
+    const dist = join(distDir, basename(target));
+    const stats = await _utils.statAsync(target);
+    // Use a junction on Windows like Yarn do.
+    // See: https://github.com/yarnpkg/yarn/blob/fc94a16b7ca90a188d084aef8cea406b60e8c38f/src/util/fs.js#L695-L696
+    const type = stats.isDirectory() ? 'junction' : 'file';
+    await _utils.symlinkAsync(target, dist, type);
+  },
 
   /**
    * Asynchronously checks if a file exists or not.
