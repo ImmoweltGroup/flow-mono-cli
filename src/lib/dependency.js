@@ -208,9 +208,7 @@ const dependencyUtils = {
       return;
     }
 
-    await file.createSymlink(src, distDir, {
-      force: true
-    });
+    await file.createSymlink(src, distDir);
   }
 };
 
