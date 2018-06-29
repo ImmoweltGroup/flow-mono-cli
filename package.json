@@ -50,7 +50,7 @@
     ]
   },
   "dependencies": {
-    "commander": "2.15.1",
+    "commander": "2.16.0",
     "cosmiconfig": "^5.0.5",
     "execa": "0.10.0",
     "find-up": "3.0.0",
