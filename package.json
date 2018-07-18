@@ -71,7 +71,7 @@
     "babel-cli": "6.26.0",
     "eslint": "5.1.0",
     "flow-bin": "0.76.0",
-    "flow-copy-source": "2.0.1",
+    "flow-copy-source": "2.0.2",
     "flow-typed": "2.4.0",
     "husky": "0.14.3",
     "jest": "23.4.1",
