@@ -68,17 +68,8 @@ const dependencyUtils = {
    * @param  {String}  version       The version to which the dependency should be bumped.
    * @return {Promise}               The promise that resolves once the update is executed.
    */
-  async updateDependency(
-    packagePath: string,
-    dependencyKey: string,
-    version: string
-  ) {
-    const update = (
-      obj: Object,
-      dependencyType: string,
-      dependencyKey: string,
-      version: string
-    ) => {
+  async updateDependency(packagePath: string, dependencyKey: string, version: string) {
+    const update = (obj: Object, dependencyType: string, dependencyKey: string, version: string) => {
       if (obj[dependencyType] && obj[dependencyType][dependencyKey]) {
         obj[dependencyType][dependencyKey] = version;
       }
@@ -92,10 +83,7 @@ const dependencyUtils = {
     json = update(json, 'peerDependencies', dependencyKey, version);
     json = update(json, 'optionalDependencies', dependencyKey, version);
 
-    await file.writeFile(
-      join(packagePath, 'package.json'),
-      JSON.stringify(json, null, 2)
-    );
+    await file.writeFile(join(packagePath, 'package.json'), JSON.stringify(json, null, 2));
 
     return json;
   },
@@ -124,9 +112,7 @@ const dependencyUtils = {
     const packageVersion = this.getDependencyVersion(key, packageJson);
 
     return {
-      hasMisMatch: Boolean(
-        rootVersion && packageVersion && packageVersion !== rootVersion
-      ),
+      hasMisMatch: Boolean(rootVersion && packageVersion && packageVersion !== rootVersion),
       rootVersion,
       packageVersion
     };
@@ -180,11 +166,7 @@ const dependencyUtils = {
    * @param  {String}  packageDir The package directory in whichs `node_modules` folder we should create the symlink.
    * @return {Promise}            A Promise that resolves once the symlink was created.
    */
-  async createSymlinkForDependency(
-    key: string,
-    rootDir: string,
-    packageDir: string
-  ) {
+  async createSymlinkForDependency(key: string, rootDir: string, packageDir: string) {
     this.ensureDependencyScopeExists(key, packageDir);
 
     const scope = this.getScopeForDependency(key);
@@ -193,10 +175,7 @@ const dependencyUtils = {
     const distDir = this.isScopedDependency(key)
       ? join(packageDir, 'node_modules', scope)
       : join(packageDir, 'node_modules');
-    const [existsSrc, existsDist] = await Promise.all([
-      file.existsAsync(src),
-      file.existsAsync(dist)
-    ]);
+    const [existsSrc, existsDist] = await Promise.all([file.existsAsync(src), file.existsAsync(dist)]);
 
     // Do not create a symlink if the source folder of the dependency does not exist.
     if (existsSrc === false) {

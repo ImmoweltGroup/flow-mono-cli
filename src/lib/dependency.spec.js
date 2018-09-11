@@ -128,9 +128,7 @@ describe('dependency.updateDependency()', () => {
   let writeFile;
 
   beforeEach(() => {
-    readPackageJson = jest
-      .spyOn(dependency, 'readPackageJson')
-      .mockImplementation(jest.fn());
+    readPackageJson = jest.spyOn(dependency, 'readPackageJson').mockImplementation(jest.fn());
     writeFile = jest.spyOn(file, 'writeFile').mockImplementation(jest.fn());
   });
 
@@ -158,11 +156,7 @@ describe('dependency.updateDependency()', () => {
       }
     });
 
-    await dependency.updateDependency(
-      '/foo/packages/bar',
-      'myDependency',
-      '1.1.0'
-    );
+    await dependency.updateDependency('/foo/packages/bar', 'myDependency', '1.1.0');
 
     expect(writeFile.mock.calls[0]).toMatchSnapshot();
   });
@@ -172,9 +166,7 @@ describe('dependency.hasRootVersionMisMatch()', () => {
   let readPackageJson;
 
   beforeEach(() => {
-    readPackageJson = jest
-      .spyOn(dependency, 'readPackageJson')
-      .mockImplementation(jest.fn());
+    readPackageJson = jest.spyOn(dependency, 'readPackageJson').mockImplementation(jest.fn());
   });
 
   afterEach(() => {
@@ -232,12 +224,8 @@ describe('dependency.ensureDependencyScopeExists()', () => {
   let mkdirSync;
 
   beforeEach(() => {
-    isScopedDependency = jest
-      .spyOn(dependency, 'isScopedDependency')
-      .mockImplementation(jest.fn(() => false));
-    getScopeForDependency = jest
-      .spyOn(dependency, 'getScopeForDependency')
-      .mockImplementation(jest.fn(() => '@foo'));
+    isScopedDependency = jest.spyOn(dependency, 'isScopedDependency').mockImplementation(jest.fn(() => false));
+    getScopeForDependency = jest.spyOn(dependency, 'getScopeForDependency').mockImplementation(jest.fn(() => '@foo'));
     existsSync = jest.spyOn(fs, 'existsSync').mockImplementation(jest.fn());
     mkdirSync = jest.spyOn(fs, 'mkdirSync').mockImplementation(jest.fn());
   });
@@ -257,24 +245,16 @@ describe('dependency.ensureDependencyScopeExists()', () => {
     getScopeForDependency.mockReturnValue('@foo');
     existsSync.mockReturnValueOnce(false);
 
-    dependency.ensureDependencyScopeExists(
-      '@foo/bar',
-      '/some/nested/package/path'
-    );
+    dependency.ensureDependencyScopeExists('@foo/bar', '/some/nested/package/path');
 
-    expect(mkdirSync.mock.calls[0]).toEqual([
-      '/some/nested/package/path/node_modules/@foo'
-    ]);
+    expect(mkdirSync.mock.calls[0]).toEqual(['/some/nested/package/path/node_modules/@foo']);
   });
 
   it('should not create the dependency scope directory if the dependency name is not a scoped one.', () => {
     isScopedDependency.mockReturnValue(false);
     existsSync.mockReturnValueOnce(true);
 
-    dependency.ensureDependencyScopeExists(
-      '@foo/bar',
-      '/some/nested/package/path'
-    );
+    dependency.ensureDependencyScopeExists('@foo/bar', '/some/nested/package/path');
 
     expect(mkdirSync.mock.calls.length).toEqual(0);
   });
@@ -284,10 +264,7 @@ describe('dependency.ensureDependencyScopeExists()', () => {
     getScopeForDependency.mockReturnValue('@foo');
     existsSync.mockReturnValueOnce(true);
 
-    dependency.ensureDependencyScopeExists(
-      '@foo/bar',
-      '/some/nested/package/path'
-    );
+    dependency.ensureDependencyScopeExists('@foo/bar', '/some/nested/package/path');
 
     expect(mkdirSync.mock.calls.length).toEqual(0);
   });
@@ -297,15 +274,9 @@ describe('dependency.createSymlinkForDependency()', () => {
   let ensureDependencyScopeExists;
 
   beforeEach(() => {
-    ensureDependencyScopeExists = jest
-      .spyOn(dependency, 'ensureDependencyScopeExists')
-      .mockImplementation(jest.fn());
-    jest
-      .spyOn(dependency, 'getScopeForDependency')
-      .mockImplementation(jest.fn(() => '@foo'));
-    jest
-      .spyOn(dependency, 'isScopedDependency')
-      .mockImplementation(jest.fn(() => false));
+    ensureDependencyScopeExists = jest.spyOn(dependency, 'ensureDependencyScopeExists').mockImplementation(jest.fn());
+    jest.spyOn(dependency, 'getScopeForDependency').mockImplementation(jest.fn(() => '@foo'));
+    jest.spyOn(dependency, 'isScopedDependency').mockImplementation(jest.fn(() => false));
   });
 
   afterEach(() => {
@@ -334,10 +305,7 @@ describe('dependency.createSymlinkForDependency()', () => {
     await dependency.createSymlinkForDependency('bar', '/foo', '/foo/bar');
 
     expect(ensureDependencyScopeExists.mock.calls.length).toBe(1);
-    expect(ensureDependencyScopeExists.mock.calls[0]).toEqual([
-      'bar',
-      '/foo/bar'
-    ]);
+    expect(ensureDependencyScopeExists.mock.calls[0]).toEqual(['bar', '/foo/bar']);
   });
 
   it('should not call the file.createSymlink method if the source path does not exist.', async () => {

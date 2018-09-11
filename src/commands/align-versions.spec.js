@@ -56,9 +56,7 @@ describe('align-versions', () => {
           packageVersion: '1.2.0'
         })
       );
-    prompt
-      .mockReturnValueOnce({shouldUpdateDependency: true})
-      .mockReturnValue({shouldUpdateDependency: false});
+    prompt.mockReturnValueOnce({shouldUpdateDependency: true}).mockReturnValue({shouldUpdateDependency: false});
 
     await alignFlowVersions();
 

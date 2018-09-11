@@ -36,9 +36,7 @@ describe('flowTypedUtils.createStubsForInDirectDependencies()', () => {
 
   beforeEach(() => {
     existsSync = jest.spyOn(fs, 'existsSync').mockImplementation(jest.fn());
-    writeFileSync = jest
-      .spyOn(fs, 'writeFileSync')
-      .mockImplementation(jest.fn());
+    writeFileSync = jest.spyOn(fs, 'writeFileSync').mockImplementation(jest.fn());
     unlinkSync = jest.spyOn(fs, 'unlinkSync').mockImplementation(jest.fn());
   });
 
@@ -49,9 +47,7 @@ describe('flowTypedUtils.createStubsForInDirectDependencies()', () => {
   });
 
   it('should be a function', () => {
-    expect(typeof flowTypedUtils.createStubsForInDirectDependencies).toBe(
-      'function'
-    );
+    expect(typeof flowTypedUtils.createStubsForInDirectDependencies).toBe('function');
   });
 
   it('should parse the dependencies package json and execute a "flow-type create-stub" command for all resolved in-idrect dependencies.', async () => {
@@ -61,14 +57,9 @@ describe('flowTypedUtils.createStubsForInDirectDependencies()', () => {
       baz: '3.20.1'
     });
 
-    await flowTypedUtils.createStubsForInDirectDependencies(
-      '/foo/bar',
-      'some-package'
-    );
+    await flowTypedUtils.createStubsForInDirectDependencies('/foo/bar', 'some-package');
 
-    expect(dependency.readPackageJson.mock.calls).toEqual([
-      ['/foo/bar/node_modules/some-package']
-    ]);
+    expect(dependency.readPackageJson.mock.calls).toEqual([['/foo/bar/node_modules/some-package']]);
     expect(exec.asyncWithRetries.mock.calls[0]).toEqual([
       'flow-typed',
       ['create-stub', 'foo@1.2.0', 'bar@1.0.0', 'baz@3.20.1'],
@@ -84,16 +75,10 @@ describe('flowTypedUtils.createStubsForInDirectDependencies()', () => {
     });
     existsSync.mockReturnValue(false);
 
-    await flowTypedUtils.createStubsForInDirectDependencies(
-      '/foo/bar',
-      'some-package'
-    );
+    await flowTypedUtils.createStubsForInDirectDependencies('/foo/bar', 'some-package');
 
     expect(writeFileSync.mock.calls).toEqual([
-      [
-        '/foo/bar/.flowconfig',
-        '# Intermediate .flowconfig file created by `flow-mono-cli'
-      ]
+      ['/foo/bar/.flowconfig', '# Intermediate .flowconfig file created by `flow-mono-cli']
     ]);
     expect(unlinkSync.mock.calls).toEqual([['/foo/bar/.flowconfig']]);
   });

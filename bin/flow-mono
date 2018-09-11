@@ -1,0 +1,42 @@
+#!/usr/bin/env node
+
+const asyncUtils = require('./../dist/lib/async.js');
+const alignFlowVersions = require('./../dist/commands/align-versions.js');
+const createDependencyFlowTypeStubs = require('./../dist/commands/create-stubs.js');
+const createFlowTypeSymlinks = require('./../dist/commands/create-symlinks.js');
+const installFlowTypes = require('./../dist/commands/install-types.js');
+
+const _ = require('yargs')
+  // Always English
+  .detectLocale(false)
+  .usage('$0 <cmd> [args]', 'A command line interface that aims to solve a few issues while working with flow typed codebases in a mono-repo')
+  .command('align-versions', 'Aligns all versions of `flow-bin` and `flow-typed` to the version specified in the mono-repo `package.json`', () => {}, () => {
+    asyncUtils.exec(alignFlowVersions);
+  })
+  .command('create-stubs', 'Creates stubs for nested dependencies to avoid the all to common `Required module not found` error', yargs => {
+    yargs.option('use-root', {
+      alias: 'u',
+      type: 'boolean',
+      default: false,
+      describe: 'If passed the stubs will be created in the root of the mono-repository'
+    })
+  }, argv => {
+    asyncUtils.exec(createDependencyFlowTypeStubs, {
+      useRoot: argv.useRoot
+    });
+  })
+  .command('create-symlinks [path]', 'Creates symlinks for all mono-repo package dependencies and the `.flowconfig` if a path was provided', yargs => {
+    yargs.positional('path', {
+      type: 'string',
+      describe: 'The relative path to the `.flowconfig` for which symlinks will be created in all packages with a `flow-bin` dependency'
+    })
+  }, argv => {
+    asyncUtils.exec(createFlowTypeSymlinks, {
+      flowConfigPath: argv.path
+    });
+  })
+  .command('install-types', 'Installs flow-typed typings for all mono-repo package dependencies', () => {}, () => {
+    asyncUtils.exec(installFlowTypes);
+  })
+  .help()
+  .argv;

@@ -2,15 +2,12 @@
   "name": "flow-mono-cli-example",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
-    "bootstrap":
-      "yarn run create-symlinks && yarn run install-types && yarn run create-stubs",
-    "create-symlinks": "./../.bin/flow-mono create-symlinks build/.flowconfig",
-    "install-types":
-      "./../.bin/flow-mono install-types --overwrite --ignoreDeps=peer",
-    "create-stubs": "./../.bin/flow-mono create-stubs --use-root",
-    "test": "yarn run flow",
+    "bootstrap": "yarn create-symlinks && yarn install-types && yarn create-stubs",
+    "create-symlinks": "node ./../bin/flow-mono create-symlinks build/.flowconfig",
+    "install-types": "node ./../bin/flow-mono install-types --overwrite --ignoreDeps=peer",
+    "create-stubs": "node ./../bin/flow-mono create-stubs --use-root",
+    "test": "yarn flow",
     "flow": "oao all --parallel flow",
     "flow:stop": "oao all --parallel 'flow stop'"
   },

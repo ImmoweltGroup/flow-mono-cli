@@ -42,8 +42,6 @@ describe('create-stubs', () => {
     await createDependencyFlowTypeStubs();
 
     expect(dependency.readPackageJson.mock.calls).toMatchSnapshot();
-    expect(
-      flowTyped.createStubsForInDirectDependencies.mock.calls
-    ).toMatchSnapshot();
+    expect(flowTyped.createStubsForInDirectDependencies.mock.calls).toMatchSnapshot();
   });
 });

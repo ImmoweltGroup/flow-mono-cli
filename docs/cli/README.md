@@ -4,10 +4,10 @@ This CLI is built as a set of separate and independent commands, see each file f
 
 ### Commands
 
-* [`flow-mono create-symlinks`](create-symlinks.md)
-* [`flow-mono install-types`](install-types.md)
-* [`flow-mono create-stubs`](create-stubs.md)
-* [`flow-mono align-versions`](align-versions.md)
+* [`$ flow-mono create-symlinks`](create-symlinks.md)
+* [`$ flow-mono install-types`](install-types.md)
+* [`$ flow-mono create-stubs`](create-stubs.md)
+* [`$ flow-mono align-versions`](align-versions.md)
 
 ### Execution
 

@@ -32,16 +32,9 @@ describe('create-symlinks', () => {
     path.resolveMonoRepoPackagePaths.mockReturnValue(['/foo/bar', '/foo/baz']);
     file.existsAsync.mockReturnValueOnce(true).mockReturnValue(false);
     dependency.readPackageJson.mockReturnValue({});
-    dependency.mergeDependenciesIntoList.mockReturnValue([
-      'foo-dependency',
-      'bar-dependency',
-      'baz-dependency'
-    ]);
+    dependency.mergeDependenciesIntoList.mockReturnValue(['foo-dependency', 'bar-dependency', 'baz-dependency']);
 
-    await createFlowTypeSymlinks(
-      {flowConfigPath: '/foo/.flowconfig'},
-      '/usr/app'
-    );
+    await createFlowTypeSymlinks({flowConfigPath: '/foo/.flowconfig'}, '/usr/app');
 
     expect(file.createSymlink.mock.calls).toMatchSnapshot();
     expect(dependency.createSymlinkForDependency.mock.calls).toMatchSnapshot();

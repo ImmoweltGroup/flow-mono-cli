@@ -5,6 +5,7 @@ jest.mock('./../lib/logger.js');
 jest.mock('./../lib/dependency.js');
 jest.mock('./../lib/flowTyped.js');
 jest.mock('./../lib/exec.js');
+console.error = jest.fn();
 
 const path: any = require('./../lib/paths.js');
 const dependency: any = require('./../lib/dependency.js');
@@ -40,12 +41,12 @@ describe('install-types', () => {
     path.resolveMonoRepoPackagePaths.mockReturnValue(['/foo/bar', '/foo/baz']);
     flowTyped.parseArgs.mockReturnValue(['--overwrite']);
     dependency.readPackageJson.mockReturnValue({name: 'myFooPackageName'});
-    exec.asyncWithRetries
-      .mockReturnValueOnce(null)
-      .mockReturnValueOnce(Promise.reject(new Error('Foo')));
+    exec.asyncWithRetries.mockReturnValueOnce(null).mockReturnValueOnce(Promise.reject(new Error('Foo')));
 
     await installFlowTypes();
 
-    expect(logger.fatal.mock.calls).toMatchSnapshot();
+    expect(logger.error.mock.calls).toMatchSnapshot();
+    expect(console.error).toHaveBeenCalled();
+    expect(console.error.mock.calls[0][0].message).toBe('Foo');
   });
 });

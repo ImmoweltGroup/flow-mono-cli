@@ -20,12 +20,12 @@ describe('asyncUtils.exec()', () => {
     expect(fn.mock.calls[0]).toEqual(args);
   });
 
-  it('should safely fail if the function rejects with a call to the logger.fatal method.', async () => {
+  it('should safely fail if the function rejects with a call to the logger.error method.', async () => {
     const fn = jest.fn(() => Promise.reject(new Error('Foo bar')));
 
     await asyncUtils.exec(fn);
 
-    expect(logger.fatal.mock.calls.length).toBe(1);
-    expect(logger.fatal.mock.calls).toEqual([['Foo bar']]);
+    expect(logger.error.mock.calls.length).toBe(1);
+    expect(logger.error.mock.calls).toEqual([['Foo bar']]);
   });
 });
