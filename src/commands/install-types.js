@@ -13,14 +13,14 @@ module.exports = async function installFlowTypes() {
   ]);
 
   // We will update the flow-typed cache first to avoid errors when running the install step in parallel.
-  info('Updating the global "flow-typed" definitions cache.');
+  info('Updating the global "flow-typed" definitions cache');
   await exec.asyncWithRetries(`flow-typed`, ['update-cache'], {
     preferLocal: true,
     localDir: rootPath,
     cwd: rootPath
   });
 
-  info(`Installing "flow-typed" definitions for dependencies in ${packagePaths.length} packages.`);
+  info(`Installing "flow-typed" definitions for dependencies in ${packagePaths.length} packages`);
   await Promise.all(
     packagePaths.map(async packagePath => {
       try {
@@ -34,10 +34,11 @@ module.exports = async function installFlowTypes() {
       } catch (e) {
         const {name} = await dependency.readPackageJson(packagePath);
 
-        error(`Failed installing "flow-typed" definitions in package "${name}".\n\n`, e.message);
+        error(`Failed installing "flow-typed" definitions in package "${name}"`, e.message);
+        console.error(e)
       }
     })
   );
 
-  success('Installing "flow-typed" definitions done.');
+  success('Installed "flow-typed" definitions');
 };

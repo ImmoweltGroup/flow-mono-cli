@@ -10,14 +10,6 @@ install:
 script:
   - yarn lint
   - yarn test --coverage
-
-  # Integration test
-  - yarn build
-  - cd examples
-  - yarn
-  - yarn bootstrap
-  - yarn test
-  - cd ..
 after_success:
   - yarn release
 branches:

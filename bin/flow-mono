@@ -6,7 +6,6 @@ const createDependencyFlowTypeStubs = require('./../dist/commands/create-stubs.j
 const createFlowTypeSymlinks = require('./../dist/commands/create-symlinks.js');
 const installFlowTypes = require('./../dist/commands/install-types.js');
 
-// eslint-disable-next-line
 const _ = require('yargs')
   // Always English
   .detectLocale(false)

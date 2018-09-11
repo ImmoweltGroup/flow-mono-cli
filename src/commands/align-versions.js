@@ -22,19 +22,19 @@ async function checkVersionAndPromptUpdate(dependencyKey, packagePath) {
       await dependency.updateDependency(packagePath, dependencyKey, rootVersion);
     }
   } else {
-    success(`Dependency "${dependencyKey}" in package "${relativePackagePath}" is of the same version.`);
+    success(`Dependency "${dependencyKey}" in package "${relativePackagePath}" is of the same version`);
   }
 }
 
 module.exports = async function alignFlowVersions() {
   const packagePaths = await path.resolveMonoRepoPackagePaths();
 
-  info(`Aligning dependency versions of "flow-bin" and "flow-typed" in ${packagePaths.length} packages.`);
+  info(`Aligning dependency versions of "flow-bin" and "flow-typed" in ${packagePaths.length} packages`);
 
   for (let packagePath of packagePaths) {
     await checkVersionAndPromptUpdate('flow-bin', packagePath);
     await checkVersionAndPromptUpdate('flow-typed', packagePath);
   }
 
-  success('Aligning dependency versions done.');
+  success('Aligned dependency versions');
 };

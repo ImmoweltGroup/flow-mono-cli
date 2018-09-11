@@ -1,5 +1,17 @@
 // @flow
 
-const signale = require('signale');
+const debugLogger = require('debug-logger');
 
-module.exports = signale.scope('flow-mono-cli');
+debugLogger.levels.info = {
+  color: debugLogger.colors.blue,
+  prefix: ' ',
+  namespaceSuffix: ':info'
+};
+
+debugLogger.levels.success = {
+  color: debugLogger.colors.green,
+  prefix: ' ',
+  namespaceSuffix: ':success'
+};
+
+module.exports = debugLogger('flow-mono-cli');

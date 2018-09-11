@@ -4,7 +4,7 @@ const fs = require('fs');
 const {join} = require('path');
 const exec = require('./exec.js');
 const dependency = require('./dependency.js');
-const {note} = require('./logger.js');
+const {log} = require('./logger.js');
 
 const flowTypedUtils = {
   /**
@@ -66,8 +66,8 @@ const flowTypedUtils = {
       return;
     }
 
-    note(dependencyKey);
-    dependencyIdentifiersTree.forEach(dependencyIdentifier => note(dependencyIdentifier));
+    log(dependencyKey);
+    dependencyIdentifiersTree.forEach(dependencyIdentifier => log(dependencyIdentifier));
 
     if (hasNoFlowConfigInCwd) {
       fs.writeFileSync(flowConfigPath, '# Intermediate .flowconfig file created by `flow-mono-cli');

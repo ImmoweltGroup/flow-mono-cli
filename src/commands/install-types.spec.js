@@ -5,6 +5,7 @@ jest.mock('./../lib/logger.js');
 jest.mock('./../lib/dependency.js');
 jest.mock('./../lib/flowTyped.js');
 jest.mock('./../lib/exec.js');
+console.error = jest.fn();
 
 const path: any = require('./../lib/paths.js');
 const dependency: any = require('./../lib/dependency.js');
@@ -45,5 +46,7 @@ describe('install-types', () => {
     await installFlowTypes();
 
     expect(logger.error.mock.calls).toMatchSnapshot();
+    expect(console.error).toHaveBeenCalled();
+    expect(console.error.mock.calls[0][0].message).toBe('Foo');
   });
 });

@@ -3,9 +3,7 @@
 exports[`install-types should fatally exit the process if something went wrong during the installation 1`] = `
 Array [
   Array [
-    "Failed installing \\"flow-typed\\" definitions in package \\"myFooPackageName\\".
-
-",
+    "Failed installing \\"flow-typed\\" definitions in package \\"myFooPackageName\\"",
     "Foo",
   ],
 ]

@@ -15,7 +15,7 @@ module.exports = async function createFlowTypeSymlinks(
   const cliConfig = await config.resolveAndReadConfig();
   const absoluteFlowConfigPath = join(cwd, flowConfigPath);
 
-  info(`Creating symlinks to the defined ".flowconfig" and dependencies to all packages with a "flow-bin" dependency.`);
+  info('Creating symlinks to the defined ".flowconfig" and dependencies to all packages with a "flow-bin" dependency');
 
   const [rootPath, packagePaths] = await Promise.all([
     path.resolveMonoRepoRootPath(),
@@ -42,5 +42,5 @@ module.exports = async function createFlowTypeSymlinks(
     })
   );
 
-  success(`Symlinking all direct dependencies of "${packagePaths.length}" packages done.`);
+  success(`Symlinked all direct dependencies of ${packagePaths.length} packages`);
 };
