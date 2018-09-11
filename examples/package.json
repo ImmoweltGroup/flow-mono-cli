@@ -4,9 +4,9 @@
   "description": "",
   "scripts": {
     "bootstrap": "yarn create-symlinks && yarn install-types && yarn create-stubs",
-    "create-symlinks": "./../.bin/flow-mono create-symlinks build/.flowconfig",
-    "install-types": "./../.bin/flow-mono install-types --overwrite --ignoreDeps=peer",
-    "create-stubs": "./../.bin/flow-mono create-stubs --use-root",
+    "create-symlinks": "./../bin/flow-mono create-symlinks build/.flowconfig",
+    "install-types": "./../bin/flow-mono install-types --overwrite --ignoreDeps=peer",
+    "create-stubs": "./../bin/flow-mono create-stubs --use-root",
     "test": "yarn flow",
     "flow": "oao all --parallel flow",
     "flow:stop": "oao all --parallel 'flow stop'"

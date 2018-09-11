@@ -6,12 +6,16 @@
   "license": "MIT",
   "description": "A command line interface that aims to solve a few issues while working with flow typed codebases in a mono-repo.",
   "bin": {
-    "flow-mono": "./.bin/flow-mono"
+    "flow-mono": "./bin/flow-mono"
   },
   "engines": {
     "node": ">=8.11.4",
     "yarn": ">=1.6.0"
   },
+  "files": [
+    "dist",
+    "bin"
+  ],
   "keywords": [
     "flow",
     "mono",
@@ -39,7 +43,6 @@
     "release": "semantic-release"
   },
   "dependencies": {
-    "commander": "2.18.0",
     "cosmiconfig": "5.0.6",
     "execa": "1.0.0",
     "find-up": "3.0.0",
