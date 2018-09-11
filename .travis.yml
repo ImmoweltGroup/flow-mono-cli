@@ -3,20 +3,20 @@ language: node_js
 notifications:
   email: false
 install:
-  - yarn install
+  - yarn
 script:
   # Unit test & code style
   - npm test
 
   # Integration test
-  - yarn run build
+  - yarn build
   - cd examples
-  - yarn install
+  - yarn
   - yarn bootstrap
   - yarn test
   - cd ..
 after_success:
-  - yarn run semantic-release
+  - yarn release
 branches:
   except:
     - /^v\d+\.\d+\.\d+$/

@@ -3,7 +3,9 @@
 const logger = require('./logger.js');
 
 describe('logger', () => {
-  it('should export an object', () => {
-    expect(typeof logger).toBe('object');
+  it('should export essential log functions', () => {
+    expect(typeof logger.info).toBe('function');
+    expect(typeof logger.success).toBe('function');
+    expect(typeof logger.error).toBe('function');
   });
 });

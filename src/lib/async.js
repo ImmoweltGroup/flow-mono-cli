@@ -1,6 +1,6 @@
 // @flow
 
-const logger = require('./logger.js');
+const {error} = require('./logger.js');
 
 const asyncUtils = {
   /**
@@ -11,7 +11,8 @@ const asyncUtils = {
    * @return {Promise}       The Promise that resolves once the function has been resolved.
    */
   exec(fn: Function, ...args: Array<any>) {
-    return fn(...args).catch(e => logger.fatal(e.message));
+    return fn(...args)
+      .catch(e => error(e.message));
   }
 };
 

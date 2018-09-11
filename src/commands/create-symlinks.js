@@ -6,7 +6,7 @@ const config = require('./../lib/config.js');
 const path = require('./../lib/paths.js');
 const dependency = require('./../lib/dependency.js');
 const file = require('./../lib/file.js');
-const logger = require('./../lib/logger.js');
+const {info, success} = require('./../lib/logger.js');
 
 module.exports = async function createFlowTypeSymlinks(
   {flowConfigPath}: {flowConfigPath: string},
@@ -15,9 +15,7 @@ module.exports = async function createFlowTypeSymlinks(
   const cliConfig = await config.resolveAndReadConfig();
   const absoluteFlowConfigPath = join(cwd, flowConfigPath);
 
-  logger.info(
-    `Creating symlinks to the defined ".flowconfig" and dependencies to all packages with a "flow-bin" dependency.`
-  );
+  info(`Creating symlinks to the defined ".flowconfig" and dependencies to all packages with a "flow-bin" dependency.`);
 
   const [rootPath, packagePaths] = await Promise.all([
     path.resolveMonoRepoRootPath(),
@@ -26,9 +24,7 @@ module.exports = async function createFlowTypeSymlinks(
 
   await Promise.all(
     packagePaths.map(async packagePath => {
-      const existsFlowConfig = await file.existsAsync(
-        join(packagePath, '.flowconfig')
-      );
+      const existsFlowConfig = await file.existsAsync(join(packagePath, '.flowconfig'));
 
       if (existsFlowConfig === false) {
         await file.createSymlink(absoluteFlowConfigPath, packagePath);
@@ -36,26 +32,15 @@ module.exports = async function createFlowTypeSymlinks(
 
       const packageJson = await dependency.readPackageJson(packagePath);
       const dependencyKeys = dependency.mergeDependenciesIntoList(packageJson);
-      const ignoredPackageKeys = mm(
-        dependencyKeys,
-        cliConfig['create-symlinks'].ignore
-      );
+      const ignoredPackageKeys = mm(dependencyKeys, cliConfig['create-symlinks'].ignore);
 
       await Promise.all(
-        dependencyKeys
-          .filter(key => ignoredPackageKeys.includes(key) === false)
-          .map(key => {
-            return dependency.createSymlinkForDependency(
-              key,
-              rootPath,
-              packagePath
-            );
-          })
+        dependencyKeys.filter(key => ignoredPackageKeys.includes(key) === false).map(key => {
+          return dependency.createSymlinkForDependency(key, rootPath, packagePath);
+        })
       );
     })
   );
 
-  logger.success(
-    `Symlinking all direct dependencies of "${packagePaths.length}" packages done.`
-  );
+  success(`Symlinking all direct dependencies of "${packagePaths.length}" packages done.`);
 };

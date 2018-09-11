@@ -3,7 +3,7 @@
 const fs = require('fs');
 const {basename, join} = require('path');
 const {promisify} = require('util');
-const logger = require('./logger.js');
+const {error} = require('./logger.js');
 
 const _utils = {
   readFileAsync: promisify(fs.readFile),
@@ -52,7 +52,7 @@ const fileUtils = {
 
       return JSON.parse(contents);
     } catch (e) {
-      logger.fatal(`Failure during parse of "${path}".`, e.message);
+      error(`Failure during parse of "${path}".`, e.message);
     }
 
     return {};

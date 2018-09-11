@@ -8,7 +8,7 @@ const pkg = require('./../package.json');
 cli.command('create-symlinks', 'Creates symlinks for all mono-repo package dependencies and the `.flowconfig` if a path was provided.');
 cli.command('align-versions', 'Aligns all versions of `flow-bin` and `flow-typed` to the version specified in the mono-repo `package.json`.');
 cli.command('create-stubs', 'Creates stubs for nested dependencies to avoid the all to common `Required module not found` error.');
-cli.command('install-types', 'Installs flow-typed typings for all mono-repo package dependencies.')
+cli.command('install-types', 'Installs flow-typed typings for all mono-repo package dependencies.');
 
 cli.usage('[command] <args ...>').version(pkg.version).parse(process.argv);
 

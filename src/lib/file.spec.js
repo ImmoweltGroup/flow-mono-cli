@@ -9,9 +9,7 @@ describe('fileUtils.existsAsync()', () => {
   let accessAsync;
 
   beforeEach(() => {
-    accessAsync = jest
-      .spyOn(fileUtils._utils, 'accessAsync')
-      .mockImplementation(jest.fn());
+    accessAsync = jest.spyOn(fileUtils._utils, 'accessAsync').mockImplementation(jest.fn());
   });
 
   afterEach(() => {
@@ -31,9 +29,7 @@ describe('fileUtils.existsAsync()', () => {
   });
 
   it('should return a falsy boolean if the fs.access method throw an error.', async () => {
-    accessAsync.mockReturnValueOnce(
-      Promise.reject(new Error('Does not exist'))
-    );
+    accessAsync.mockReturnValueOnce(Promise.reject(new Error('Does not exist')));
 
     const exists = await fileUtils.existsAsync('/foo/bar/qux.js');
 
@@ -43,13 +39,11 @@ describe('fileUtils.existsAsync()', () => {
 
 describe('fileUtils.readJson()', () => {
   let readFileAsync;
-  let fatal;
+  let error;
 
   beforeEach(() => {
-    readFileAsync = jest
-      .spyOn(fileUtils._utils, 'readFileAsync')
-      .mockImplementation(jest.fn());
-    fatal = jest.spyOn(logger, 'fatal').mockImplementation(jest.fn());
+    readFileAsync = jest.spyOn(fileUtils._utils, 'readFileAsync').mockImplementation(jest.fn());
+    error = jest.spyOn(logger, 'error').mockImplementation(jest.fn());
   });
 
   afterEach(() => {
@@ -70,12 +64,12 @@ describe('fileUtils.readJson()', () => {
     expect(json).toEqual({foo: 'bar'});
   });
 
-  it('should call the fatal logger method if something went wrong during the parsing.', async () => {
+  it('should call the error logger method if something went wrong during the parsing.', async () => {
     readFileAsync.mockReturnValueOnce('foo');
 
     await fileUtils.readJson('/foo/bar/baz.json');
 
-    expect(fatal.mock.calls.length).toBe(1);
+    expect(error.mock.calls.length).toBe(1);
   });
 });
 
@@ -83,9 +77,7 @@ describe('fileUtils.writeFile()', () => {
   let writeFileAsync;
 
   beforeEach(() => {
-    writeFileAsync = jest
-      .spyOn(fileUtils._utils, 'writeFileAsync')
-      .mockImplementation(jest.fn());
+    writeFileAsync = jest.spyOn(fileUtils._utils, 'writeFileAsync').mockImplementation(jest.fn());
   });
 
   afterEach(() => {
@@ -101,10 +93,6 @@ describe('fileUtils.writeFile()', () => {
   it('should call the writeFileAsync method and propagate all arguments to it.', async () => {
     await fileUtils.writeFile('/foo/bar/baz.json', {foo: 'bar'});
 
-    expect(writeFileAsync.mock.calls[0]).toEqual([
-      '/foo/bar/baz.json',
-      {foo: 'bar'},
-      'utf8'
-    ]);
+    expect(writeFileAsync.mock.calls[0]).toEqual(['/foo/bar/baz.json', {foo: 'bar'}, 'utf8']);
   });
 });

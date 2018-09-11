@@ -40,12 +40,10 @@ describe('install-types', () => {
     path.resolveMonoRepoPackagePaths.mockReturnValue(['/foo/bar', '/foo/baz']);
     flowTyped.parseArgs.mockReturnValue(['--overwrite']);
     dependency.readPackageJson.mockReturnValue({name: 'myFooPackageName'});
-    exec.asyncWithRetries
-      .mockReturnValueOnce(null)
-      .mockReturnValueOnce(Promise.reject(new Error('Foo')));
+    exec.asyncWithRetries.mockReturnValueOnce(null).mockReturnValueOnce(Promise.reject(new Error('Foo')));
 
     await installFlowTypes();
 
-    expect(logger.fatal.mock.calls).toMatchSnapshot();
+    expect(logger.error.mock.calls).toMatchSnapshot();
   });
 });

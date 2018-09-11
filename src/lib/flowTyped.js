@@ -4,7 +4,7 @@ const fs = require('fs');
 const {join} = require('path');
 const exec = require('./exec.js');
 const dependency = require('./dependency.js');
-const logger = require('./logger.js');
+const {info} = require('./logger.js');
 
 const flowTypedUtils = {
   /**
@@ -65,12 +65,7 @@ const flowTypedUtils = {
         return `${key}@${version}`;
       });
     const dependencyIdentifiersTree = dependencyIdentifiers
-      .map(
-        (id, index) =>
-          `${index === dependencyIdentifiers.length - 1
-            ? '    └──'
-            : '    ├──'} ${id}`
-      )
+      .map((id, index) => `${index === dependencyIdentifiers.length - 1 ? '    └──' : '    ├──'} ${id}`)
       .join('\n');
 
     // Avoid executing an `flow-typed create-stub` without arguments.
@@ -78,25 +73,18 @@ const flowTypedUtils = {
       return;
     }
 
-    logger.info(`    ${dependencyKey}
+    info(`    ${dependencyKey}
 ${dependencyIdentifiersTree}`);
 
     if (hasNoFlowConfigInCwd) {
-      fs.writeFileSync(
-        flowConfigPath,
-        '# Intermediate .flowconfig file created by `flow-mono-cli'
-      );
+      fs.writeFileSync(flowConfigPath, '# Intermediate .flowconfig file created by `flow-mono-cli');
     }
 
-    await exec.asyncWithRetries(
-      `flow-typed`,
-      ['create-stub', ...dependencyIdentifiers],
-      {
-        preferLocal: true,
-        localDir: cwd,
-        cwd
-      }
-    );
+    await exec.asyncWithRetries(`flow-typed`, ['create-stub', ...dependencyIdentifiers], {
+      preferLocal: true,
+      localDir: cwd,
+      cwd
+    });
 
     if (hasNoFlowConfigInCwd) {
       fs.unlinkSync(flowConfigPath);

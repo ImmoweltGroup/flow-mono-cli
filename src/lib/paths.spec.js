@@ -7,9 +7,7 @@ const file: any = require('./file.js');
 
 describe('pathUtils.resolveMonoRepoRootPath()', () => {
   beforeEach(() => {
-    jest
-      .spyOn(pathUtils._utils, 'findUp')
-      .mockImplementation(jest.fn(() => '/foo/bar/package.json'));
+    jest.spyOn(pathUtils._utils, 'findUp').mockImplementation(jest.fn(() => '/foo/bar/package.json'));
   });
 
   afterEach(() => {
@@ -33,12 +31,8 @@ describe('pathUtils.resolveMonoRepoPackagePaths()', () => {
   let globAsync;
 
   beforeEach(() => {
-    jest
-      .spyOn(pathUtils, 'resolveMonoRepoRootPath')
-      .mockImplementation(jest.fn(() => '/foo/bar'));
-    globAsync = jest
-      .spyOn(pathUtils._utils, 'globAsync')
-      .mockImplementation(jest.fn());
+    jest.spyOn(pathUtils, 'resolveMonoRepoRootPath').mockImplementation(jest.fn(() => '/foo/bar'));
+    globAsync = jest.spyOn(pathUtils._utils, 'globAsync').mockImplementation(jest.fn());
   });
 
   afterEach(() => {
@@ -53,11 +47,7 @@ describe('pathUtils.resolveMonoRepoPackagePaths()', () => {
 
   it('should resolve the with a list of package paths that have a dependency to "flow-bin"', async () => {
     file.readJson.mockReturnValueOnce({workspaces: ['packages/*']});
-    globAsync.mockReturnValueOnce([
-      '/foo/bar/package-a',
-      '/foo/bar/package-b',
-      '/foo/bar/package-c'
-    ]);
+    globAsync.mockReturnValueOnce(['/foo/bar/package-a', '/foo/bar/package-b', '/foo/bar/package-c']);
     file.existsAsync
       .mockReturnValueOnce(true)
       .mockReturnValueOnce(false)

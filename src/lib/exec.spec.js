@@ -42,9 +42,7 @@ describe('exec.asyncWithRetries()', () => {
     config.resolveAndReadConfig.mockReturnValueOnce({
       flowTypedCommandExecRetries: 2
     });
-    execAsync.mockImplementationOnce(() =>
-      Promise.reject(new Error('first failure'))
-    );
+    execAsync.mockImplementationOnce(() => Promise.reject(new Error('first failure')));
 
     await exec.asyncWithRetries();
 

@@ -3,15 +3,12 @@
 const inquirer = require('inquirer');
 const path = require('./../lib/paths.js');
 const dependency = require('./../lib/dependency.js');
-const logger = require('./../lib/logger.js');
+const {info, success} = require('./../lib/logger.js');
 
 async function checkVersionAndPromptUpdate(dependencyKey, packagePath) {
   const rootPath = await path.resolveMonoRepoRootPath();
   const relativePackagePath = packagePath.replace(rootPath, '');
-  const {hasMisMatch, rootVersion} = await dependency.hasRootVersionMisMatch(
-    dependencyKey,
-    packagePath
-  );
+  const {hasMisMatch, rootVersion} = await dependency.hasRootVersionMisMatch(dependencyKey, packagePath);
 
   if (hasMisMatch) {
     const answers = await inquirer.prompt({
@@ -22,30 +19,22 @@ async function checkVersionAndPromptUpdate(dependencyKey, packagePath) {
     });
 
     if (answers.shouldUpdateDependency) {
-      await dependency.updateDependency(
-        packagePath,
-        dependencyKey,
-        rootVersion
-      );
+      await dependency.updateDependency(packagePath, dependencyKey, rootVersion);
     }
   } else {
-    logger.success(
-      `Dependency "${dependencyKey}" in package "${relativePackagePath}" is of the same version.`
-    );
+    success(`Dependency "${dependencyKey}" in package "${relativePackagePath}" is of the same version.`);
   }
 }
 
 module.exports = async function alignFlowVersions() {
   const packagePaths = await path.resolveMonoRepoPackagePaths();
 
-  logger.info(
-    `Aligning dependency versions of "flow-bin" and "flow-typed" in ${packagePaths.length} packages.`
-  );
+  info(`Aligning dependency versions of "flow-bin" and "flow-typed" in ${packagePaths.length} packages.`);
 
   for (let packagePath of packagePaths) {
     await checkVersionAndPromptUpdate('flow-bin', packagePath);
     await checkVersionAndPromptUpdate('flow-typed', packagePath);
   }
 
-  logger.success('Aligning dependency versions done.');
+  success('Aligning dependency versions done.');
 };

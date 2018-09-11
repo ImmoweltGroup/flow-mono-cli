@@ -32,12 +32,8 @@ const pathUtils = {
    */
   async resolveMonoRepoPackagePaths(): Promise<Array<string>> {
     const rootPath = await this.resolveMonoRepoRootPath();
-    const {workspaces = []} = await file.readJson(
-      join(rootPath, 'package.json')
-    );
-    const workspacesArray = Array.isArray(workspaces) 
-      ? workspaces 
-      : workspaces.packages || [];
+    const {workspaces = []} = await file.readJson(join(rootPath, 'package.json'));
+    const workspacesArray = Array.isArray(workspaces) ? workspaces : workspaces.packages || [];
     const packagePaths = [];
 
     await Promise.all(
@@ -53,10 +49,7 @@ const pathUtils = {
               return false;
             }
 
-            const {
-              dependencies = {},
-              devDependencies = {}
-            } = await file.readJson(packageJsonPath);
+            const {dependencies = {}, devDependencies = {}} = await file.readJson(packageJsonPath);
 
             if (dependencies['flow-bin'] || devDependencies['flow-bin']) {
               packagePaths.push(packagePath);
