@@ -1,6 +1,6 @@
 # Table of Contents
 
-* [Read Me](/README.md)
+* [README](/README.md)
 * [Introduction](/docs/introduction/README.md)
   * [Motivation](/docs/introduction/Motivation.md)
 * [CLI Reference](/docs/cli/README.md)
