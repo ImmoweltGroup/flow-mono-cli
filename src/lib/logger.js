@@ -2,4 +2,4 @@
 
 const signale = require('signale');
 
-module.exports = signale('flow-mono-cli');
+module.exports = signale.scope('flow-mono-cli');
