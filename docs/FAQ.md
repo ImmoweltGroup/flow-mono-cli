@@ -1,5 +1,0 @@
-# FAQ
-
-## Table of Contents
-
-- ...

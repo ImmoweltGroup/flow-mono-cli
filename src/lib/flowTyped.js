@@ -4,7 +4,7 @@ const fs = require('fs');
 const {join} = require('path');
 const exec = require('./exec.js');
 const dependency = require('./dependency.js');
-const {info} = require('./logger.js');
+const {note} = require('./logger.js');
 
 const flowTypedUtils = {
   /**
@@ -55,26 +55,19 @@ const flowTypedUtils = {
     const pkg = await dependency.readPackageJson(dependencyPath);
     const dependencies = dependency.mergeDependenciesIntoMap(pkg);
     const dependencyIdentifiers = Object.keys(dependencies)
-      .filter(
-        // Avoid creating stubs for the dependency itself
-        key => key !== dependencyKey
-      )
-      .map(key => {
-        const version = dependencies[key];
-
-        return `${key}@${version}`;
-      });
+      // Avoid creating stubs for the dependency itself
+      .filter(key => key !== dependencyKey)
+      .map(key => `${key}@${dependencies[key]}`);
     const dependencyIdentifiersTree = dependencyIdentifiers
-      .map((id, index) => `${index === dependencyIdentifiers.length - 1 ? '    └──' : '    ├──'} ${id}`)
-      .join('\n');
+      .map((id, index) => `${index === dependencyIdentifiers.length - 1 ? '└──' : '├──'} ${id}`);
 
     // Avoid executing an `flow-typed create-stub` without arguments.
     if (!dependencyIdentifiers.length) {
       return;
     }
 
-    info(`    ${dependencyKey}
-${dependencyIdentifiersTree}`);
+    note(dependencyKey);
+    dependencyIdentifiersTree.forEach(dependencyIdentifier => note(dependencyIdentifier));
 
     if (hasNoFlowConfigInCwd) {
       fs.writeFileSync(flowConfigPath, '# Intermediate .flowconfig file created by `flow-mono-cli');

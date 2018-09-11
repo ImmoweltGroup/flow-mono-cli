@@ -8,4 +8,3 @@
   * [`flow-mono install-types`](/docs/cli/install-types.md)
   * [`flow-mono create-stubs`](/docs/cli/create-stubs.md)
   * [`flow-mono align-versions`](/docs/cli/align-versions.md)
-* [FAQ](/docs/FAQ.md)
