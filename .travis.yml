@@ -8,8 +8,8 @@ before_install:
 install:
   - yarn
 script:
-  # Unit test & code style
-  - npm test
+  - yarn lint
+  - yarn test --coverage
 
   # Integration test
   - yarn build
