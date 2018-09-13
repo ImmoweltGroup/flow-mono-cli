@@ -23,17 +23,12 @@ It provides a set of commands that we found to be very useful *if you want your 
 * Configurable via a `.flowmonorc` or `flow-mono` property in your mono-repo's root `package.json`.
 
 ## Installation
-```sh
-$ npm install flow-mono-cli --save-dev
-```
-
-or
 
 ```sh
 $ yarn add flow-mono-cli --dev
 ```
 
-afterwards make sure that you've got your workspaces configured in the root `package.json`, e.g.
+aAfterwards make sure that you've got your workspaces configured in the root `package.json`, e.g.
 
 ```json
 {
@@ -52,7 +47,9 @@ afterwards make sure that you've got your workspaces configured in the root `pac
 * [`flow-mono align-versions`](/docs/cli/align-versions.md)
 
 ## Contributing
+
 See the `CONTRIBUTING.md` file at the root of the repository.
 
 ## Licensing
+
 See the `LICENSE` file at the root of the repository.
