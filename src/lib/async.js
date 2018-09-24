@@ -1,6 +1,6 @@
 // @flow
 
-const {start} = require('ora');
+const ora = require('ora');
 const {error} = require('./logger.js');
 
 const asyncUtils = {
@@ -12,7 +12,7 @@ const asyncUtils = {
    * @return {Promise}       The Promise that resolves once the function has been resolved.
    */
   exec(fn: Function, ...args: Array<any>) {
-    const spinner = start();
+    const spinner = ora().start();
     return fn(...args)
       .then(() => spinner.stop())
       .catch(e => {
