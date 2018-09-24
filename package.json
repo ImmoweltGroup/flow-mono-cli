@@ -6,7 +6,7 @@
   "license": "MIT",
   "description": "A command line interface that aims to solve a few issues while working with flow typed codebases in a mono-repo.",
   "bin": {
-    "flow-mono": "./bin/flow-mono"
+    "flow-mono": "./.bin/flow-mono"
   },
   "engines": {
     "node": ">=8.11.4",
@@ -14,7 +14,7 @@
   },
   "files": [
     "dist",
-    "bin"
+    ".bin"
   ],
   "keywords": [
     "flow",
@@ -51,6 +51,7 @@
     "inquirer": "6.2.0",
     "lodash.merge": "4.6.1",
     "micromatch": "3.1.10",
+    "ora": "^3.0.0",
     "yargs": "12.0.2"
   },
   "devDependencies": {

@@ -1,6 +1,11 @@
 // @flow
 
 jest.mock('./logger.js');
+jest.mock('ora', () => ({
+  start: jest.fn(() => ({
+    stop: jest.fn()
+  }))
+}));
 
 const logger = require('./logger.js');
 const asyncUtils = require('./async.js');
