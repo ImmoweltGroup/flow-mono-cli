@@ -60,7 +60,7 @@
     "@immowelt/jest-preset-node": "1.1.1",
     "babel-cli": "6.26.0",
     "eslint": "5.12.1",
-    "flow-bin": "0.91.0",
+    "flow-bin": "0.92.0",
     "flow-copy-source": "2.0.2",
     "flow-typed": "2.5.1",
     "jest": "23.6.0",
