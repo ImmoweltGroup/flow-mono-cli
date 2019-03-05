@@ -16,7 +16,13 @@ $ flow-mono create-symlinks ./build/.flowconfig
 
 #### Options and Arguments
 
-The only argument provided should be the relative path to the fallback / singleton `.flowconfig`.
+##### `[flowconfig-path]`
+
+The relative path to the fallback / singleton `.flowconfig`.
+
+##### `-r, --relative`  \(Optional\)
+
+Create relative symlinks (e.g. ../../../build/.flowconfig) instead of absolute symlinks (e.g. /path/to/build/.flowconfig)
 
 #### Configuration
 

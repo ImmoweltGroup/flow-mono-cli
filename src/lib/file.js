@@ -1,7 +1,8 @@
 // @flow
 
 const fs = require('fs');
-const {basename, join} = require('path');
+const process = require('process');
+const path = require('path');
 const {promisify} = require('util');
 const {error} = require('./logger.js');
 
@@ -16,13 +17,21 @@ const _utils = {
 const fileUtils = {
   _utils,
 
-  async createSymlink(target: string, distDir: string) {
-    const dist = join(distDir, basename(target));
+  async createSymlink(target: string, distDir: string, relative: boolean) {
+    const dist = path.join(distDir, path.basename(target));
     const stats = await _utils.statAsync(target);
     // Use a junction on Windows like Yarn do.
     // See: https://github.com/yarnpkg/yarn/blob/fc94a16b7ca90a188d084aef8cea406b60e8c38f/src/util/fs.js#L695-L696
     const type = stats.isDirectory() ? 'junction' : 'file';
-    await _utils.symlinkAsync(target, dist, type);
+    let targetRelative = target;
+    if (relative) {
+      targetRelative = path.relative(path.dirname(dist), target);
+    }
+
+    const currDur = process.cwd();
+    process.chdir(distDir);
+    await _utils.symlinkAsync(targetRelative, path.basename(target), type);
+    process.chdir(currDur);
   },
 
   /**

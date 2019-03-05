@@ -30,9 +30,16 @@ const _ = require('yargs')
       type: 'string',
       describe: 'The relative path to the `.flowconfig` for which symlinks will be created in all packages with a `flow-bin` dependency'
     })
+    yargs.option('relative', {
+      alias: 'r',
+      type: 'boolean',
+      default: false,
+      describe: 'If passed the symlinks will be relative paths instead of absolute'
+    })
   }, argv => {
     asyncUtils.exec(createFlowTypeSymlinks, {
-      flowConfigPath: argv.path
+      flowConfigPath: argv.path,
+      relative: argv.relative
     });
   })
   .command('install-types', 'Installs flow-typed typings for all mono-repo package dependencies', () => {}, () => {

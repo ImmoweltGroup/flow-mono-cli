@@ -9,7 +9,7 @@ const file = require('./../lib/file.js');
 const {info, success} = require('./../lib/logger.js');
 
 module.exports = async function createFlowTypeSymlinks(
-  {flowConfigPath}: {flowConfigPath: string},
+  {flowConfigPath, relative}: {flowConfigPath: string, relative: boolean},
   cwd?: string = process.cwd()
 ) {
   const cliConfig = await config.resolveAndReadConfig();
@@ -27,7 +27,7 @@ module.exports = async function createFlowTypeSymlinks(
       const existsFlowConfig = await file.existsAsync(join(packagePath, '.flowconfig'));
 
       if (existsFlowConfig === false) {
-        await file.createSymlink(absoluteFlowConfigPath, packagePath);
+        await file.createSymlink(absoluteFlowConfigPath, packagePath, relative);
       }
 
       const packageJson = await dependency.readPackageJson(packagePath);
@@ -36,7 +36,7 @@ module.exports = async function createFlowTypeSymlinks(
 
       await Promise.all(
         dependencyKeys.filter(key => ignoredPackageKeys.includes(key) === false).map(key => {
-          return dependency.createSymlinkForDependency(key, rootPath, packagePath);
+          return dependency.createSymlinkForDependency(key, rootPath, packagePath, relative);
         })
       );
     })
