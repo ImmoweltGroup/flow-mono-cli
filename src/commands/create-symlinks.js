@@ -9,7 +9,10 @@ const file = require('./../lib/file.js');
 const {info, success} = require('./../lib/logger.js');
 
 module.exports = async function createFlowTypeSymlinks(
-  {flowConfigPath}: {flowConfigPath: string},
+  {flowConfigPath, includePeerDependencies}: {
+    flowConfigPath: string,
+    includePeerDependencies: boolean
+  },
   cwd?: string = process.cwd()
 ) {
   const cliConfig = await config.resolveAndReadConfig();
@@ -31,7 +34,7 @@ module.exports = async function createFlowTypeSymlinks(
       }
 
       const packageJson = await dependency.readPackageJson(packagePath);
-      const dependencyKeys = dependency.mergeDependenciesIntoList(packageJson);
+      const dependencyKeys = dependency.mergeDependenciesIntoList(packageJson, includePeerDependencies);
       const ignoredPackageKeys = mm(dependencyKeys, cliConfig['create-symlinks'].ignore);
 
       await Promise.all(
