@@ -10,24 +10,34 @@ const dependencyUtils = {
    * Merges the contents of a `package.json` into a single dependency map.
    *
    * @param  {Object} json                      The contents of a `package.json`.
+   * @param  {boolean} includePeerDependencies  `true` to include peer dependencies.
    * @return {Object}                           The map of all dependencies of the given `package.json`.
    */
-  mergeDependenciesIntoMap(json: Object = {}): {[string]: string} {
-    return {
+  mergeDependenciesIntoMap(json: Object = {}, includePeerDependencies: boolean = false): {[string]: string} {
+    const dependencies = {
       ...(json.dependencies || {}),
       ...(json.devDependencies || {}),
       ...(json.optionalDependencies || {})
     };
+
+    if (includePeerDependencies) {
+      return {
+        ...dependencies,
+        ...(json.peerDependencies || {})
+      };
+    }
+    return dependencies;
   },
 
   /**
    * Merges the contents of a `package.json` into a list of keys for iterations.
    *
    * @param  {Object} json                      The contents of a `package.json`.
+   * @param  {boolean} includePeerDependencies  `true` to include peer dependencies.
    * @return {Array}                            The list of dependency keys of the given `package.json`.
    */
-  mergeDependenciesIntoList(json: Object = {}): Array<string> {
-    return Object.keys(this.mergeDependenciesIntoMap(json));
+  mergeDependenciesIntoList(json: Object = {}, includePeerDependencies: boolean = false): Array<string> {
+    return Object.keys(this.mergeDependenciesIntoMap(json, includePeerDependencies));
   },
 
   /**

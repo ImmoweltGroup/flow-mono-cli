@@ -35,6 +35,37 @@ describe('dependency.mergeDependenciesIntoMap()', () => {
     });
   });
 
+  it('should merge "dependencies" and "peerDependencies" into one single map', () => {
+    const result = dependency.mergeDependenciesIntoMap({
+      dependencies: {
+        foo: '1.0.0'
+      },
+      peerDependencies: {
+        bar: '4.2'
+      }
+    }, true);
+
+    expect(result).toEqual({
+      foo: '1.0.0',
+      bar: '4.2'
+    });
+  });
+
+  it('should not merge "peerDependencies" into the map', () => {
+    const result = dependency.mergeDependenciesIntoMap({
+      dependencies: {
+        foo: '1.0.0'
+      },
+      peerDependencies: {
+        bar: '4.2'
+      }
+    });
+
+    expect(result).toEqual({
+      foo: '1.0.0'
+    });
+  });
+
   it('should not throw errors if no argument was provided', () => {
     expect(() => dependency.mergeDependenciesIntoMap()).not.toThrow();
   });
@@ -60,6 +91,32 @@ describe('dependency.mergeDependenciesIntoList()', () => {
     });
 
     expect(result).toEqual(['foo', 'bar', 'baz']);
+  });
+
+  it('should merge "devDependencies" and "peerDependecies" into a single list', () => {
+    const result = dependency.mergeDependenciesIntoList({
+      devDependencies: {
+        foo: '1.0.0'
+      },
+      peerDependencies: {
+        bar: '2.1.0'
+      }
+    }, true);
+
+    expect(result).toEqual(['foo', 'bar']);
+  });
+
+  it('should not merge "peerDependecies" into the list', () => {
+    const result = dependency.mergeDependenciesIntoList({
+      devDependencies: {
+        foo: '1.0.0'
+      },
+      peerDependencies: {
+        bar: '2.1.0'
+      }
+    }, false);
+
+    expect(result).toEqual(['foo']);
   });
 
   it('should not throw errors if no argument was provided', () => {
