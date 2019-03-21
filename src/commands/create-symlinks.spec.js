@@ -34,7 +34,7 @@ describe('create-symlinks', () => {
     dependency.readPackageJson.mockReturnValue({});
     dependency.mergeDependenciesIntoList.mockReturnValue(['foo-dependency', 'bar-dependency', 'baz-dependency']);
 
-    await createFlowTypeSymlinks({flowConfigPath: '/foo/.flowconfig'}, '/usr/app');
+    await createFlowTypeSymlinks({flowConfigPath: '/foo/.flowconfig', relative: false}, '/usr/app');
 
     expect(file.createSymlink.mock.calls).toMatchSnapshot();
     expect(dependency.createSymlinkForDependency.mock.calls).toMatchSnapshot();

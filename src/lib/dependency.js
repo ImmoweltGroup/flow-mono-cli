@@ -166,7 +166,7 @@ const dependencyUtils = {
    * @param  {String}  packageDir The package directory in whichs `node_modules` folder we should create the symlink.
    * @return {Promise}            A Promise that resolves once the symlink was created.
    */
-  async createSymlinkForDependency(key: string, rootDir: string, packageDir: string) {
+  async createSymlinkForDependency(key: string, rootDir: string, packageDir: string, relative: booelan) {
     this.ensureDependencyScopeExists(key, packageDir);
 
     const scope = this.getScopeForDependency(key);
@@ -187,7 +187,7 @@ const dependencyUtils = {
       return;
     }
 
-    await file.createSymlink(src, distDir);
+    await file.createSymlink(src, distDir, relative);
   }
 };
 

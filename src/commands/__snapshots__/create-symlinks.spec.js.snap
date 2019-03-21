@@ -5,6 +5,7 @@ Array [
   Array [
     "/usr/app/foo/.flowconfig",
     "/foo/baz",
+    false,
   ],
 ]
 `;
@@ -15,11 +16,13 @@ Array [
     "baz-dependency",
     "/foo",
     "/foo/bar",
+    false,
   ],
   Array [
     "baz-dependency",
     "/foo",
     "/foo/baz",
+    false,
   ],
 ]
 `;
