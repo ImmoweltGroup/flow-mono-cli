@@ -15,7 +15,7 @@
     "flow-mono-cli-example-package-2": "0.0.0-development"
   },
   "devDependencies": {
-    "flow-bin": "0.98.1",
+    "flow-bin": "0.99.0",
     "flow-typed": "2.5.2"
   }
 }
