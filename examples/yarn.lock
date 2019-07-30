@@ -418,9 +418,9 @@ flow-bin@0.104.0:
   version "0.104.0"
   resolved "https://registry.yarnpkg.com/flow-bin/-/flow-bin-0.104.0.tgz#ef5b3600dfd36abe191a87d19f66e481bad2e235"
 
-flow-typed@2.6.0:
-  version "2.6.0"
-  resolved "https://registry.yarnpkg.com/flow-typed/-/flow-typed-2.6.0.tgz#504e6a7e7312ab31adc1717e6527b94014a459a6"
+flow-typed@2.6.1:
+  version "2.6.1"
+  resolved "https://registry.yarnpkg.com/flow-typed/-/flow-typed-2.6.1.tgz#e991f53840ad121d9e1f61bd8f8b844cfae57ab1"
   dependencies:
     "@babel/polyfill" "^7.0.0"
     "@octokit/rest" "^15.12.1"
