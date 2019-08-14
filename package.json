@@ -65,7 +65,7 @@
     "flow-typed": "2.6.1",
     "jest": "23.6.0",
     "prettier": "1.18.2",
-    "rimraf": "2.7.0",
+    "rimraf": "2.7.1",
     "semantic-release": "13.4.1"
   },
   "jest": {
