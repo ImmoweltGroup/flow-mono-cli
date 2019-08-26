@@ -15,7 +15,7 @@
     "log-fancy": "1.3.2"
   },
   "devDependencies": {
-    "flow-bin": "0.106.1",
+    "flow-bin": "0.106.2",
     "flow-typed": "2.6.1"
   }
 }
