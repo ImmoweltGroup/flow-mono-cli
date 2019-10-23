@@ -16,6 +16,6 @@
   },
   "devDependencies": {
     "flow-bin": "0.110.0",
-    "flow-typed": "2.6.1"
+    "flow-typed": "2.6.2"
   }
 }
