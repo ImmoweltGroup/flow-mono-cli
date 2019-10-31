@@ -429,9 +429,9 @@ find-up@^3.0.0:
   dependencies:
     locate-path "^3.0.0"
 
-flow-bin@0.110.1:
-  version "0.110.1"
-  resolved "https://registry.yarnpkg.com/flow-bin/-/flow-bin-0.110.1.tgz#24ac70bf0871a5d6bc181ba99801ded4d5e3b442"
+flow-bin@0.111.0:
+  version "0.111.0"
+  resolved "https://registry.yarnpkg.com/flow-bin/-/flow-bin-0.111.0.tgz#dda5d07911df2268ef0f9061fb3c8d71bbb3bc3d"
 
 flow-typed@2.6.2:
   version "2.6.2"
