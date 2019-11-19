@@ -63,7 +63,7 @@
     "flow-bin": "0.112.0",
     "flow-copy-source": "2.0.9",
     "flow-typed": "2.6.2",
-    "jest": "23.6.0",
+    "jest": "24.9.0",
     "prettier": "1.19.0",
     "rimraf": "2.7.1",
     "semantic-release": "13.4.1"
