@@ -14,17 +14,6 @@ Array [
   Array [
     "flow-typed",
     Array [
-      "update-cache",
-    ],
-    Object {
-      "cwd": "/foo",
-      "localDir": "/foo",
-      "preferLocal": true,
-    },
-  ],
-  Array [
-    "flow-typed",
-    Array [
       "install",
       "--overwrite",
     ],
