@@ -1,9 +1,11 @@
 sudo: false
 language: node_js
+node_js:
+- "12.13.1"
 notifications:
   email: false
 before_install:
-  - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.6.0
+  - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.19.2
   - export PATH="$HOME/.yarn/bin:$PATH"
 install:
   - yarn

@@ -2,8 +2,9 @@
 
 const fs = require('fs');
 const {join} = require('path');
-const path = require('./paths.js');
-const file = require('./file.js');
+const path = require('./paths');
+const file = require('./file');
+const update = require('./updateVersion');
 
 const dependencyUtils = {
   /**
@@ -69,13 +70,6 @@ const dependencyUtils = {
    * @return {Promise}               The promise that resolves once the update is executed.
    */
   async updateDependency(packagePath: string, dependencyKey: string, version: string) {
-    const update = (obj: Object, dependencyType: string, dependencyKey: string, version: string) => {
-      if (obj[dependencyType] && obj[dependencyType][dependencyKey]) {
-        obj[dependencyType][dependencyKey] = version;
-      }
-
-      return obj;
-    };
     let json = await this.readPackageJson(packagePath);
 
     json = update(json, 'dependencies', dependencyKey, version);
@@ -166,15 +160,15 @@ const dependencyUtils = {
    * @param  {String}  packageDir The package directory in whichs `node_modules` folder we should create the symlink.
    * @return {Promise}            A Promise that resolves once the symlink was created.
    */
-  async createSymlinkForDependency(key: string, rootDir: string, packageDir: string, relative: booelan) {
+  async createSymlinkForDependency(key: string, rootDir: string, packageDir: string, relative: boolean) {
     this.ensureDependencyScopeExists(key, packageDir);
 
     const scope = this.getScopeForDependency(key);
     const src = join(rootDir, 'node_modules', key);
     const dist = join(packageDir, 'node_modules', key);
-    const distDir = this.isScopedDependency(key)
-      ? join(packageDir, 'node_modules', scope)
-      : join(packageDir, 'node_modules');
+    const distDir = this.isScopedDependency(key) ?
+      join(packageDir, 'node_modules', scope) :
+      join(packageDir, 'node_modules');
     const [existsSrc, existsDist] = await Promise.all([file.existsAsync(src), file.existsAsync(dist)]);
 
     // Do not create a symlink if the source folder of the dependency does not exist.

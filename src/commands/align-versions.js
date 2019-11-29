@@ -26,15 +26,17 @@ async function checkVersionAndPromptUpdate(dependencyKey, packagePath) {
   }
 }
 
-module.exports = async function alignFlowVersions() {
+async function alignFlowVersions() {
   const packagePaths = await path.resolveMonoRepoPackagePaths();
 
   info(`Aligning dependency versions of "flow-bin" and "flow-typed" in ${packagePaths.length} packages`);
 
-  for (let packagePath of packagePaths) {
+  for (const packagePath of packagePaths) {
     await checkVersionAndPromptUpdate('flow-bin', packagePath);
     await checkVersionAndPromptUpdate('flow-typed', packagePath);
   }
 
   success('Aligned dependency versions');
-};
+}
+
+module.exports = alignFlowVersions;

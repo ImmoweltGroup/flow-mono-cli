@@ -7,7 +7,7 @@ const file: any = require('./file.js');
 
 describe('pathUtils.resolveMonoRepoRootPath()', () => {
   beforeEach(() => {
-    jest.spyOn(pathUtils._utils, 'findUp').mockImplementation(jest.fn(() => '/foo/bar/package.json'));
+    jest.spyOn(pathUtils.utils, 'findUp').mockImplementation(jest.fn(() => '/foo/bar/package.json'));
   });
 
   afterEach(() => {
@@ -32,7 +32,7 @@ describe('pathUtils.resolveMonoRepoPackagePaths()', () => {
 
   beforeEach(() => {
     jest.spyOn(pathUtils, 'resolveMonoRepoRootPath').mockImplementation(jest.fn(() => '/foo/bar'));
-    globAsync = jest.spyOn(pathUtils._utils, 'globAsync').mockImplementation(jest.fn());
+    globAsync = jest.spyOn(pathUtils.utils, 'globAsync').mockImplementation(jest.fn());
   });
 
   afterEach(() => {

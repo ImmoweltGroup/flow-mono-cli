@@ -2,9 +2,13 @@
 
 const fs = require('fs');
 const {join} = require('path');
-const exec = require('./exec.js');
-const dependency = require('./dependency.js');
-const {log} = require('./logger.js');
+const cli = require('yargs');
+const exec = require('./exec');
+const {
+  readPackageJson,
+  mergeDependenciesIntoMap
+} = require('./dependency');
+const {log} = require('./logger');
 
 const flowTypedUtils = {
   /**
@@ -13,7 +17,7 @@ const flowTypedUtils = {
    * @param  {Array}   args Arguments that will be propagated to the fs.stat method.
    * @return {Promise}      The Promise that resolves with the boolean.
    */
-  parseArgs(argv: {[string]: any} = require('yargs').argv): Array<string> {
+  parseArgs(argv: {[string]: any} = cli.argv): Array<string> {
     const flowTypedInstallArgs = [
       'flowVersion',
       'overwrite',
@@ -52,14 +56,15 @@ const flowTypedUtils = {
     const dependencyPath = join(cwd, 'node_modules', dependencyKey);
     const flowConfigPath = join(cwd, '.flowconfig');
     const hasNoFlowConfigInCwd = fs.existsSync(flowConfigPath) === false;
-    const pkg = await dependency.readPackageJson(dependencyPath);
-    const dependencies = dependency.mergeDependenciesIntoMap(pkg);
+    const pkg = await readPackageJson(dependencyPath);
+    const dependencies = mergeDependenciesIntoMap(pkg);
     const dependencyIdentifiers = Object.keys(dependencies)
       // Avoid creating stubs for the dependency itself
       .filter(key => key !== dependencyKey)
       .map(key => `${key}@${dependencies[key]}`);
-    const dependencyIdentifiersTree = dependencyIdentifiers
-      .map((id, index) => `${index === dependencyIdentifiers.length - 1 ? '└──' : '├──'} ${id}`);
+    const dependencyIdentifiersTree = dependencyIdentifiers.map(
+      (id, index) => `${index === dependencyIdentifiers.length - 1 ? '└──' : '├──'} ${id}`
+    );
 
     // Avoid executing an `flow-typed create-stub` without arguments.
     if (!dependencyIdentifiers.length) {
@@ -73,7 +78,7 @@ const flowTypedUtils = {
       fs.writeFileSync(flowConfigPath, '# Intermediate .flowconfig file created by `flow-mono-cli');
     }
 
-    await exec.asyncWithRetries(`flow-typed`, ['create-stub', ...dependencyIdentifiers], {
+    await exec.asyncWithRetries('flow-typed', ['create-stub', ...dependencyIdentifiers], {
       preferLocal: true,
       localDir: cwd,
       cwd

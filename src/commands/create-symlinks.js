@@ -8,7 +8,7 @@ const dependency = require('./../lib/dependency.js');
 const file = require('./../lib/file.js');
 const {info, success} = require('./../lib/logger.js');
 
-module.exports = async function createFlowTypeSymlinks(
+async function createFlowTypeSymlinks(
   {flowConfigPath, relative}: {flowConfigPath: string, relative: boolean},
   cwd?: string = process.cwd()
 ) {
@@ -35,12 +35,12 @@ module.exports = async function createFlowTypeSymlinks(
       const ignoredPackageKeys = mm(dependencyKeys, cliConfig['create-symlinks'].ignore);
 
       await Promise.all(
-        dependencyKeys.filter(key => ignoredPackageKeys.includes(key) === false).map(key => {
-          return dependency.createSymlinkForDependency(key, rootPath, packagePath, relative);
-        })
+        dependencyKeys.filter(key => ignoredPackageKeys.includes(key) === false).map(key => dependency.createSymlinkForDependency(key, rootPath, packagePath, relative))
       );
     })
   );
 
   success(`Symlinked all direct dependencies of ${packagePaths.length} packages`);
-};
+}
+
+module.exports = createFlowTypeSymlinks;

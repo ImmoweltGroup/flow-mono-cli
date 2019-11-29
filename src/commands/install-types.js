@@ -6,7 +6,7 @@ const dependency = require('./../lib/dependency.js');
 const flowTyped = require('./../lib/flowTyped.js');
 const {info, success, error} = require('./../lib/logger.js');
 
-module.exports = async function installFlowTypes() {
+async function installFlowTypes() {
   const [rootPath, packagePaths] = await Promise.all([
     path.resolveMonoRepoRootPath(),
     path.resolveMonoRepoPackagePaths()
@@ -14,7 +14,7 @@ module.exports = async function installFlowTypes() {
 
   // We will update the flow-typed cache first to avoid errors when running the install step in parallel.
   info('Updating the global "flow-typed" definitions cache');
-  await exec.asyncWithRetries(`flow-typed`, ['update-cache'], {
+  await exec.asyncWithRetries('flow-typed', ['update-cache'], {
     preferLocal: true,
     localDir: rootPath,
     cwd: rootPath
@@ -26,7 +26,7 @@ module.exports = async function installFlowTypes() {
       try {
         const args = flowTyped.parseArgs();
 
-        await exec.asyncWithRetries(`flow-typed`, ['install'].concat(args), {
+        await exec.asyncWithRetries('flow-typed', ['install'].concat(args), {
           preferLocal: true,
           localDir: packagePath,
           cwd: packagePath
@@ -35,10 +35,12 @@ module.exports = async function installFlowTypes() {
         const {name} = await dependency.readPackageJson(packagePath);
 
         error(`Failed installing "flow-typed" definitions in package "${name}"`, e.message);
-        console.error(e)
+        console.error(e);
       }
     })
   );
 
   success('Installed "flow-typed" definitions');
-};
+}
+
+module.exports = installFlowTypes;

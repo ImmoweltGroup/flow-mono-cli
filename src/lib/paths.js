@@ -6,13 +6,13 @@ const {promisify} = require('util');
 const findUp = require('find-up');
 const file = require('./file.js');
 
-const _utils = {
+const utils = {
   findUp,
   globAsync: promisify(glob)
 };
 
 const pathUtils = {
-  _utils,
+  utils,
 
   /**
    * Resolves the mono repo root by traveling up the cwd until it find's the `package.json`.
@@ -20,7 +20,7 @@ const pathUtils = {
    * @return {Promise}       The Promise that resolves with the complete path to the mono repo.
    */
   async resolveMonoRepoRootPath(): Promise<string> {
-    const pkgJsonPath = await _utils.findUp('package.json');
+    const pkgJsonPath = await utils.findUp('package.json');
 
     return pkgJsonPath.replace('package.json', '');
   },
@@ -38,7 +38,7 @@ const pathUtils = {
 
     await Promise.all(
       workspacesArray.map(async pattern => {
-        const paths = await _utils.globAsync(join(rootPath, pattern));
+        const paths = await utils.globAsync(join(rootPath, pattern));
 
         await Promise.all(
           paths.map(async packagePath => {
@@ -54,6 +54,8 @@ const pathUtils = {
             if (dependencies['flow-bin'] || devDependencies['flow-bin']) {
               packagePaths.push(packagePath);
             }
+
+            return true;
           })
         );
       })

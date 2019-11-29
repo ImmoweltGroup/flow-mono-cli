@@ -1,5 +1,5 @@
 {
   "presets": [
-    "@immowelt/babel-preset-immowelt-node"
+    "@babel/preset-flow"
   ]
 }

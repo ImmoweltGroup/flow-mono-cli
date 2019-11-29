@@ -7,7 +7,7 @@ describe('config.resolveAndReadConfig()', () => {
 
   beforeEach(() => {
     search = jest.fn();
-    jest.spyOn(config._utils, 'cosmiconfig').mockImplementation(
+    jest.spyOn(config.utils, 'cosmiconfig').mockImplementation(
       jest.fn(() => ({
         search
       }))

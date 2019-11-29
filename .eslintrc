@@ -1,6 +1,10 @@
 {
-  "extends": "@immowelt/eslint-config-immowelt-react",
-  "settings": {
-    "polyfills": ["promises"]
+  "extends": "@immowelt/eslint-config-immowelt-base",
+  "rules": {
+    "compat/compat": 0,
+    "no-await-in-loop": 0,
+    "no-continue": 0,
+    "no-console": 0,
+    "no-restricted-syntax": 0
   }
 }

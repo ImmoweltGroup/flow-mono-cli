@@ -3,7 +3,7 @@
 const cosmiconfig = require('cosmiconfig');
 const merge = require('lodash.merge');
 
-const _utils = {
+const utils = {
   cosmiconfig
 };
 const defaults = {
@@ -17,18 +17,18 @@ const defaults = {
 };
 
 const config = {
-  _utils,
+  utils,
 
   async resolveAndReadConfig(): Promise<typeof defaults> {
-    const explorer = _utils.cosmiconfig('flow-mono', {
+    const explorer = utils.cosmiconfig('flow-mono', {
       searchPlaces: [
         'package.json',
         '.flowmonorc',
-        `.flowmonorc.json`,
-        `.flowmonorc.yaml`,
-        `.flowmonorc.yml`,
-        `.flowmonorc.js`,
-        `flowmono.config.js`
+        '.flowmonorc.json',
+        '.flowmonorc.yaml',
+        '.flowmonorc.yml',
+        '.flowmonorc.js',
+        'flowmono.config.js'
       ]
     });
     const results = await explorer.search();
