@@ -5,26 +5,33 @@
   "scripts": {
     "bootstrap": "yarn create-symlinks && yarn install-types && yarn create-stubs",
     "create-symlinks": "node ./../bin/flow-mono create-symlinks build/.flowconfig",
-    "install-types": "node ./../bin/flow-mono install-types --overwrite --ignoreDeps=peer",
+    "install-types": "node ./../bin/flow-mono install-types --ignoreDeps=peer",
     "create-stubs": "node ./../bin/flow-mono create-stubs --use-root",
     "test": "yarn flow",
-    "flow": "oao all --parallel flow",
-    "flow:stop": "oao all --parallel 'flow stop'"
+    "flow": "wsrun -a --collect-logs flow",
+    "flow:stop": "wsrun -a --collect-logs 'flow stop'"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "private": true,
-  "workspaces": ["packages/*"],
+  "workspaces": [
+    "packages/*"
+  ],
   "flow-mono": {
     "create-symlinks": {
-      "ignore": ["eslint", "jest"]
+      "ignore": [
+        "eslint",
+        "jest"
+      ]
     },
     "create-stubs": {
-      "dependencies": ["log-fancy"]
+      "dependencies": [
+        "log-fancy"
+      ]
     }
   },
   "devDependencies": {
-    "oao": "0.10.5"
+    "wsrun": "5.1.0"
   }
 }
