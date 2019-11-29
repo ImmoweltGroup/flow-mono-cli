@@ -1,6 +1,6 @@
 // @flow
 
-const cosmiconfig = require('cosmiconfig');
+const {cosmiconfig} = require('cosmiconfig');
 const merge = require('lodash.merge');
 
 const utils = {
