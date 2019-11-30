@@ -60,7 +60,7 @@
     "@babel/preset-flow": "7.7.4",
     "@immowelt/eslint-config-immowelt-base": "1.2.0",
     "@immowelt/jest-preset-node": "1.1.1",
-    "eslint": "6.7.1",
+    "eslint": "6.7.2",
     "eslint-plugin-compat": "3.3.0",
     "eslint-plugin-flowtype": "4.5.2",
     "eslint-plugin-import": "2.18.2",
