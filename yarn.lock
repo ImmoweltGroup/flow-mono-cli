@@ -217,17 +217,17 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@immowelt/browserslist-config@^1.0.6":
-  version "1.0.8"
-  resolved "https://registry.yarnpkg.com/@immowelt/browserslist-config/-/browserslist-config-1.0.8.tgz#fb6f0bd00c2388fe87ad3b344b2fdb4d3d15410b"
-  integrity sha512-Srj3arTtn7bOELTrdeJHWCzqHWGUyiKFWU8mUSYD+fkqSK08byFU3kSKYn2/5y/LbvYT5pkfADDL+GXVoTv4Bw==
+"@immowelt/browserslist-config@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@immowelt/browserslist-config/-/browserslist-config-2.0.0.tgz#beddb741f52cbfb0e3556c8fbe58a54152d4b7bb"
+  integrity sha512-XsFG2nYYaziyHDlxZq2i2MJzEVmyCG2Mt1HPVYQOMYYnxUPq/K2Cq9Dw8N6uoj69t/ryPH0iHJeTonVq6b/2tA==
 
-"@immowelt/eslint-config-immowelt-base@1.2.0":
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/@immowelt/eslint-config-immowelt-base/-/eslint-config-immowelt-base-1.2.0.tgz#933078b1cf2b9786dbb779d7cad2d5dae3a4ea66"
-  integrity sha512-Ie+jPgnzeZ+6tUDao6RKBDKp/VzJuFFlKXRMh4jPX+I9ER7gAcbXGKJJ2zK+Fu1CK3t5VSfBy8uG63GFh/ObPQ==
+"@immowelt/eslint-config-immowelt-base@1.3.0":
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/@immowelt/eslint-config-immowelt-base/-/eslint-config-immowelt-base-1.3.0.tgz#54f6135f5ca1091c4231e750393bbdf30e6c24bf"
+  integrity sha512-r+qSuIr7fULWJWQRBzbX/JA5o6ILtMkMm492ccWhLeHZ2EZ5LxsOdMvBQu2taOuFK7Qzm1bxhT7dd12ZZsRe+g==
   dependencies:
-    "@immowelt/browserslist-config" "^1.0.6"
+    "@immowelt/browserslist-config" "^2.0.0"
     babel-eslint "^10.0.1"
     eslint "^5.6.1"
     eslint-config-airbnb-base "^13.1.0"
