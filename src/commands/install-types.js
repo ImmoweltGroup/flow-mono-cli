@@ -21,22 +21,24 @@ async function installFlowTypes() {
   });
 
   info(`Installing "flow-typed" definitions for dependencies in ${packagePaths.length} packages`);
-  for (const packagePath of packagePaths) {
-    try {
-      const args = flowTyped.parseArgs();
+  await Promise.all(
+    packagePaths.map(async packagePath => {
+      try {
+        const args = flowTyped.parseArgs();
 
-      await exec.asyncWithRetries('flow-typed', ['install'].concat(args), {
-        preferLocal: true,
-        localDir: packagePath,
-        cwd: packagePath
-      });
-    } catch (e) {
-      const {name} = await dependency.readPackageJson(packagePath);
+        await exec.asyncWithRetries('flow-typed', ['install'].concat(args), {
+          preferLocal: true,
+          localDir: packagePath,
+          cwd: packagePath
+        });
+      } catch (e) {
+        const {name} = await dependency.readPackageJson(packagePath);
 
-      error(`Failed installing "flow-typed" definitions in package "${name}"`, e.message);
-      console.error(e);
-    }
-  }
+        error(`Failed installing "flow-typed" definitions in package "${name}"`, e.message);
+        console.error(e);
+      }
+    })
+  );
 
   success('Installed "flow-typed" definitions');
 }
