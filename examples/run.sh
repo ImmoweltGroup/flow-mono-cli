@@ -4,7 +4,7 @@ set -e
 
 cd examples
 
-## install dependencies and run static code analysis
+## install dependencies and run flow commands
 yarn
 yarn bootstrap
 yarn flow
