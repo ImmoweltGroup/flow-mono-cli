@@ -1,6 +1,6 @@
 // @flow
 
-const { default: Workder } = require('jest-worker');
+const {default: Workder} = require('jest-worker');
 
 const path = require('./../lib/paths.js');
 const dependency = require('./../lib/dependency.js');

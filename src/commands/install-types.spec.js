@@ -1,11 +1,15 @@
 // @flow
 
+jest.mock('jest-worker');
+
 jest.mock('./../lib/paths.js');
 jest.mock('./../lib/logger.js');
 jest.mock('./../lib/dependency.js');
 jest.mock('./../lib/flowTyped.js');
 jest.mock('./../lib/exec.js');
 console.error = jest.fn();
+
+const {default: Worker} = require('jest-worker');
 
 const path: any = require('./../lib/paths.js');
 const dependency: any = require('./../lib/dependency.js');
@@ -16,6 +20,13 @@ const exec: any = require('./../lib/exec.js');
 const installFlowTypes = require('./install-types.js');
 
 describe('install-types', () => {
+  beforeAll(() => {
+    Worker.mockImplementation(() => ({
+      asyncWithRetries: exec.asyncWithRetries,
+      end: () => {}
+    }));
+  });
+
   afterEach(() => {
     // $FlowFixMe: Ignore errors since the jest type-def is out of date.
     jest.restoreAllMocks();
