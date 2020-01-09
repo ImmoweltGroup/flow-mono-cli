@@ -30,6 +30,7 @@
   ],
   "scripts": {
     "test": "jest",
+    "integTest": "./examples/run.sh",
     "clean": "rimraf dist node_modules flow-typed",
     "build": "babel src --out-dir dist --ignore spec.js && flow-copy-source -v src dist --ignore='*.spec.js'",
     "dev": "nodemon --quiet --watch src --exec 'yarn build'",

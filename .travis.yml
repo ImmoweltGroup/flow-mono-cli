@@ -12,6 +12,8 @@ install:
 script:
   - yarn lint
   - yarn test --coverage
+  - yarn build
+  - yarn integTest
 after_success:
   - yarn release
 branches:
