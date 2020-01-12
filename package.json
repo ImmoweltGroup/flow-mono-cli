@@ -30,6 +30,7 @@
   ],
   "scripts": {
     "test": "jest",
+    "integTest": "./examples/run.sh",
     "clean": "rimraf dist node_modules flow-typed",
     "build": "babel src --out-dir dist --ignore spec.js && flow-copy-source -v src dist --ignore='*.spec.js'",
     "dev": "nodemon --quiet --watch src --exec 'yarn build'",
@@ -56,15 +57,15 @@
     "yargs": "15.1.0"
   },
   "devDependencies": {
-    "@babel/cli": "7.7.7",
+    "@babel/cli": "7.8.0",
     "@babel/core": "7.7.7",
-    "@babel/preset-flow": "7.7.4",
+    "@babel/preset-flow": "7.8.0",
     "@immowelt/eslint-config-immowelt-base": "1.3.0",
     "@immowelt/jest-preset-node": "1.1.1",
     "eslint": "6.8.0",
     "eslint-plugin-compat": "3.3.0",
-    "eslint-plugin-flowtype": "4.5.3",
-    "eslint-plugin-import": "2.19.1",
+    "eslint-plugin-flowtype": "4.6.0",
+    "eslint-plugin-import": "2.20.0",
     "flow-bin": "0.115.0",
     "flow-copy-source": "2.0.9",
     "flow-typed": "2.6.2",
