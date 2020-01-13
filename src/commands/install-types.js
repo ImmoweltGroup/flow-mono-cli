@@ -1,12 +1,14 @@
 // @flow
 
-const exec = require('./../lib/exec.js');
+const {default: Workder} = require('jest-worker');
+
 const path = require('./../lib/paths.js');
 const dependency = require('./../lib/dependency.js');
 const flowTyped = require('./../lib/flowTyped.js');
 const {info, success, error} = require('./../lib/logger.js');
 
 async function installFlowTypes() {
+  const exec = new Workder(require.resolve('./../lib/exec.js'));
   const [rootPath, packagePaths] = await Promise.all([
     path.resolveMonoRepoRootPath(),
     path.resolveMonoRepoPackagePaths()
@@ -41,6 +43,7 @@ async function installFlowTypes() {
   );
 
   success('Installed "flow-typed" definitions');
+  exec.end();
 }
 
 module.exports = installFlowTypes;
