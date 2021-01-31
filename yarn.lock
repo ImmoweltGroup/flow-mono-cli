@@ -246,13 +246,6 @@
   dependencies:
     regenerator-runtime "^0.13.2"
 
-"@babel/runtime@^7.7.7":
-  version "7.8.3"
-  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.8.3.tgz#0811944f73a6c926bb2ad35e918dcc1bfab279f1"
-  integrity sha512-fVHx1rzEmwB130VTkLnxR+HmxcTjGzH12LYQcFFoBwakMd3aOMD4OsRN7tGG/UOYE2ektgFrS8uACAoRk1CY0w==
-  dependencies:
-    regenerator-runtime "^0.13.2"
-
 "@babel/template@^7.4.0", "@babel/template@^7.7.4":
   version "7.7.4"
   resolved "https://registry.yarnpkg.com/@babel/template/-/template-7.7.4.tgz#428a7d9eecffe27deac0a98e23bf8e3675d2a77b"
@@ -497,6 +490,13 @@
     "@types/istanbul-lib-coverage" "^2.0.0"
     "@types/istanbul-reports" "^1.1.1"
     "@types/yargs" "^13.0.0"
+
+"@mdn/browser-compat-data@^2.0.7":
+  version "2.0.7"
+  resolved "https://registry.yarnpkg.com/@mdn/browser-compat-data/-/browser-compat-data-2.0.7.tgz#72ec37b9c1e00ce0b4e0309d753be18e2da12ee3"
+  integrity sha512-GeeM827DlzFFidn1eKkMBiqXFD2oLsnZbaiGhByPl0vcapsRzUL+t9hDoov1swc9rB2jw64R+ihtzC8qOE9wXw==
+  dependencies:
+    extend "3.0.2"
 
 "@nicolo-ribaudo/chokidar-2@2.1.8-no-fsevents":
   version "2.1.8-no-fsevents"
@@ -1087,10 +1087,10 @@ assign-symbols@^1.0.0:
   resolved "https://registry.yarnpkg.com/assign-symbols/-/assign-symbols-1.0.0.tgz#59667f41fadd4f20ccbc2bb96b8d4f7f78ec0367"
   integrity sha1-WWZ/QfrdTyDMvCu5a41Pf3jsA2c=
 
-ast-metadata-inferer@^0.1.1:
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/ast-metadata-inferer/-/ast-metadata-inferer-0.1.1.tgz#66e24fae9d30ca961fac4880b7fc466f09b25165"
-  integrity sha512-hc9w8Qrgg9Lf9iFcZVhNjUnhrd2BBpTlyCnegPVvCe6O0yMrF57a6Cmh7k+xUsfUOMh9wajOL5AsGOBNEyTCcw==
+ast-metadata-inferer@^0.4.0:
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/ast-metadata-inferer/-/ast-metadata-inferer-0.4.0.tgz#6be85ceeffcf267bd79db8e1ae731da44880b45f"
+  integrity sha512-tKHdBe8N/Vq2nLAm4YPBVREVZjMux6KrqyPfNQgIbDl0t7HaNSmy8w4OyVHYg/cvyn5BW7o7pVwpjPte89Zhcg==
 
 astral-regex@^1.0.0:
   version "1.0.0"
@@ -1317,6 +1317,17 @@ browser-resolve@^1.11.3:
   dependencies:
     resolve "1.1.7"
 
+browserslist@^4.12.2:
+  version "4.16.3"
+  resolved "https://registry.yarnpkg.com/browserslist/-/browserslist-4.16.3.tgz#340aa46940d7db878748567c5dea24a48ddf3717"
+  integrity sha512-vIyhWmIkULaq04Gt93txdh+j02yX/JzlyhLYbV3YQCn/zvES3JnY7TifHHvvr1w5hTDluNKMkV05cs4vy8Q7sw==
+  dependencies:
+    caniuse-lite "^1.0.30001181"
+    colorette "^1.2.1"
+    electron-to-chromium "^1.3.649"
+    escalade "^3.1.1"
+    node-releases "^1.1.70"
+
 browserslist@^4.4.1:
   version "4.7.3"
   resolved "https://registry.yarnpkg.com/browserslist/-/browserslist-4.7.3.tgz#02341f162b6bcc1e1028e30624815d4924442dc3"
@@ -1325,15 +1336,6 @@ browserslist@^4.4.1:
     caniuse-lite "^1.0.30001010"
     electron-to-chromium "^1.3.306"
     node-releases "^1.1.40"
-
-browserslist@^4.8.2:
-  version "4.8.5"
-  resolved "https://registry.yarnpkg.com/browserslist/-/browserslist-4.8.5.tgz#691af4e327ac877b25e7a3f7ee869c4ef36cdea3"
-  integrity sha512-4LMHuicxkabIB+n9874jZX/az1IaZ5a+EUuvD7KFOu9x/Bd5YHyO0DIz2ls/Kl8g0ItS4X/ilEgf4T1Br0lgSg==
-  dependencies:
-    caniuse-lite "^1.0.30001022"
-    electron-to-chromium "^1.3.338"
-    node-releases "^1.1.46"
 
 bser@^2.0.0:
   version "2.1.1"
@@ -1460,20 +1462,15 @@ caniuse-db@^1.0.30000935:
   resolved "https://registry.yarnpkg.com/caniuse-db/-/caniuse-db-1.0.30001012.tgz#a792225f33a49068c9c2f5c44f759151f2111d61"
   integrity sha512-fm4VZQo0F1WYTmJcaTsqGhRuqcbkUW1/1hx8n5xdkbJSyaJV3jZ1vPXHYNcn376cAcuhxUIcE9TpHlSAYtN6bA==
 
-caniuse-db@^1.0.30001017:
-  version "1.0.30001022"
-  resolved "https://registry.yarnpkg.com/caniuse-db/-/caniuse-db-1.0.30001022.tgz#a7721c26a4af4d8420680079dcd27754be84daf6"
-  integrity sha512-2RQQgO+yDEaqF4ltwrCja7oZst+FVnXHQLSJgZ678tausEljBq3/U20Fedvze+Hxqm8XLV+9OgGbtdgS7ksnRw==
-
 caniuse-lite@^1.0.30001010:
   version "1.0.30001012"
   resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001012.tgz#653ec635e815b9e0fb801890923b0c2079eb34ec"
   integrity sha512-7RR4Uh04t9K1uYRWzOJmzplgEOAXbfK72oVNokCdMzA67trrhPzy93ahKk1AWHiA0c58tD2P+NHqxrA8FZ+Trg==
 
-caniuse-lite@^1.0.30001022:
-  version "1.0.30001022"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001022.tgz#9eeffe580c3a8f110b7b1742dcf06a395885e4c6"
-  integrity sha512-FjwPPtt/I07KyLPkBQ0g7/XuZg6oUkYBVnPHNj3VHJbOjmmJ/GdSo/GUY6MwINEQvjhP6WZVbX8Tvms8xh0D5A==
+caniuse-lite@^1.0.30001166, caniuse-lite@^1.0.30001181:
+  version "1.0.30001181"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001181.tgz#4f0e5184e1ea7c3bf2727e735cbe7ca9a451d673"
+  integrity sha512-m5ul/ARCX50JB8BSNM+oiPmQrR5UmngaQ3QThTTp5HcIIQGP/nPBs82BYLE+tigzm3VW+F4BJIhUyaVtEweelQ==
 
 capture-exit@^2.0.0:
   version "2.0.0"
@@ -1757,6 +1754,11 @@ color-name@~1.1.4:
   resolved "https://registry.yarnpkg.com/color-name/-/color-name-1.1.4.tgz#c2a09a87acbde69543de6f63fa3995c826c536a2"
   integrity sha512-dOy+3AuW3a2wNbZHIuMZpTcgjGuLU/uBL/ubcZF9OXbDo8ff4O8yVp5Bf0efS8uEoYo5q4Fx7dY9OgQGXgAsQA==
 
+colorette@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/colorette/-/colorette-1.2.1.tgz#4d0b921325c14faf92633086a536db6e89564b1b"
+  integrity sha512-puCDz0CzydiSYOrnXpz/PKd69zRrribezjtE9yd4zvytoRc8+RY/KJPvtPFKZS3E3wP6neGyMe0vOTlHO5L3Pw==
+
 colors@1.0.3:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/colors/-/colors-1.0.3.tgz#0433f44d809680fdeb60ed260f1b0c262e82a40b"
@@ -1928,6 +1930,11 @@ core-js@^2.6.5:
   version "2.6.10"
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-2.6.10.tgz#8a5b8391f8cc7013da703411ce5b585706300d7f"
   integrity sha512-I39t74+4t+zau64EN1fE5v2W31Adtc/REhzWN+gWRRXg6WH5qAsZm62DHpQ1+Yhe4047T55jvzz7MUqF/dBBlA==
+
+core-js@^3.6.5:
+  version "3.8.3"
+  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.8.3.tgz#c21906e1f14f3689f93abcc6e26883550dd92dd0"
+  integrity sha512-KPYXeVZYemC2TkNEkX/01I+7yd+nX3KddKwZ1Ww7SKWdI2wQprSgLmrTddT8nw92AjEklTsPBoSdQBhbI1bQ6Q==
 
 core-util-is@1.0.2, core-util-is@~1.0.0:
   version "1.0.2"
@@ -2278,10 +2285,10 @@ electron-to-chromium@^1.3.306:
   resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.314.tgz#c186a499ed2c9057bce9eb8dca294d6d5450facc"
   integrity sha512-IKDR/xCxKFhPts7h+VaSXS02Z1mznP3fli1BbXWXeN89i2gCzKraU8qLpEid8YzKcmZdZD3Mly3cn5/lY9xsBQ==
 
-electron-to-chromium@^1.3.338:
-  version "1.3.339"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.339.tgz#ff7b56c4bc58159f0d6623591116e4414e7a618b"
-  integrity sha512-C1i/vH6/kQx9YV8RddMkmW216GwW4pTrnYIlKmDFIqXA4fPwqDxIdGyHsuG+fgurHoljRz7/oaD+tztcryW/9g==
+electron-to-chromium@^1.3.649:
+  version "1.3.649"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.649.tgz#3aa8be052d4d268ede45d8e98d0cd60ffefad607"
+  integrity sha512-ojGDupQ3UMkvPWcTICe4JYe17+o9OLiFMPoduoR72Zp2ILt1mRVeqnxBEd6s/ptekrnsFU+0A4lStfBe/wyG/A==
 
 emoji-regex@^7.0.1:
   version "7.0.3"
@@ -2411,6 +2418,11 @@ es6-promisify@^5.0.0:
   dependencies:
     es6-promise "^4.0.3"
 
+escalade@^3.1.1:
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/escalade/-/escalade-3.1.1.tgz#d8cfdc7000965c5a0174b4a82eaa5c0552742e40"
+  integrity sha512-k0er2gUkLf8O0zKJiAhmkTnJlTvINGv7ygDNPbeIsX/TJjGJZHuh9B2UxbsaEkmlEo9MfhrSzmhIlhRlI2GXnw==
+
 escape-string-regexp@^1.0.5:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/escape-string-regexp/-/escape-string-regexp-1.0.5.tgz#1b61c0562190a8dff6ae3bb2cf0200ca130b86d4"
@@ -2469,18 +2481,19 @@ eslint-module-utils@^2.6.0:
     debug "^2.6.9"
     pkg-dir "^2.0.0"
 
-eslint-plugin-compat@3.5.1:
-  version "3.5.1"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-compat/-/eslint-plugin-compat-3.5.1.tgz#09f9c05dcfa9b5cd69345d7ab333749813ed8b14"
-  integrity sha512-dhfW12vZxxKLEVhrPoblmEopgwpYU2Sd4GdXj5OSfbQ+as9+1aY+S5pqnJYJvXXNWFFJ6aspLkCyk4NMQ/pgtA==
+eslint-plugin-compat@3.9.0:
+  version "3.9.0"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-compat/-/eslint-plugin-compat-3.9.0.tgz#a7a224e09b102b58e7f7dff52c936428ff3e0186"
+  integrity sha512-lt3l5PHFHVEYSZ5zijcoYvtQJPsBifRiH5N0Et57KwVu7l/yxmHhSG6VJiLMa/lXrg93Qu8049RNQOMn0+yJBg==
   dependencies:
-    "@babel/runtime" "^7.7.7"
-    ast-metadata-inferer "^0.1.1"
-    browserslist "^4.8.2"
-    caniuse-db "^1.0.30001017"
+    "@mdn/browser-compat-data" "^2.0.7"
+    ast-metadata-inferer "^0.4.0"
+    browserslist "^4.12.2"
+    caniuse-lite "^1.0.30001166"
+    core-js "^3.6.5"
+    find-up "^4.1.0"
     lodash.memoize "4.1.2"
-    mdn-browser-compat-data "^1.0.3"
-    semver "^6.3.0"
+    semver "7.3.2"
 
 eslint-plugin-compat@^2.6.2:
   version "2.7.0"
@@ -5188,13 +5201,6 @@ mdn-browser-compat-data@^0.0.65:
   dependencies:
     extend "3.0.2"
 
-mdn-browser-compat-data@^1.0.3:
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/mdn-browser-compat-data/-/mdn-browser-compat-data-1.0.5.tgz#016311130a2d1e21f283ecb77226fc3e9a23b187"
-  integrity sha512-9KDi2ERdtsFsSxz+w6+syybRHuCSR5WePONgM1ayE7GoC3odrCwhZNWgwDz+VK13oXq2qrjFpkSchHhwjE0UIg==
-  dependencies:
-    extend "3.0.2"
-
 meant@~1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/meant/-/meant-1.0.1.tgz#66044fea2f23230ec806fb515efea29c44d2115d"
@@ -5539,12 +5545,10 @@ node-releases@^1.1.40:
   dependencies:
     semver "^6.3.0"
 
-node-releases@^1.1.46:
-  version "1.1.47"
-  resolved "https://registry.yarnpkg.com/node-releases/-/node-releases-1.1.47.tgz#c59ef739a1fd7ecbd9f0b7cf5b7871e8a8b591e4"
-  integrity sha512-k4xjVPx5FpwBUj0Gw7uvFOTF4Ep8Hok1I6qjwL3pLfwe7Y0REQSAqOwwv9TWBCUtMHxcXfY4PgRLRozcChvTcA==
-  dependencies:
-    semver "^6.3.0"
+node-releases@^1.1.70:
+  version "1.1.70"
+  resolved "https://registry.yarnpkg.com/node-releases/-/node-releases-1.1.70.tgz#66e0ed0273aa65666d7fe78febe7634875426a08"
+  integrity sha512-Slf2s69+2/uAD79pVVQo8uSiC34+g8GWY8UH2Qtqv34ZfhYrxpYpfzs9Js9d6O0mbDmALuxaTlplnBTnSELcrw==
 
 "nopt@2 || 3":
   version "3.0.6"
@@ -7158,6 +7162,11 @@ semver-regex@^2.0.0:
   version "5.7.1"
   resolved "https://registry.yarnpkg.com/semver/-/semver-5.7.1.tgz#a954f931aeba508d307bbf069eff0c01c96116f7"
   integrity sha512-sauaDf/PZdVgrLTNYHRtpXa1iRiKcaebiKQ1BJdpQlWH2lCvexQdX55snPFyK7QzpudqbCI0qXFfOasHdyNDGQ==
+
+semver@7.3.2:
+  version "7.3.2"
+  resolved "https://registry.yarnpkg.com/semver/-/semver-7.3.2.tgz#604962b052b81ed0786aae84389ffba70ffd3938"
+  integrity sha512-OrOb32TeeambH6UrhtShmF7CRDqhL6/5XpPNp2DuRH6+9QLw/orhp72j87v8Qa1ScDkvrrBNpZcDejAirJmfXQ==
 
 semver@^6.0.0, semver@^6.1.2, semver@^6.2.0, semver@^6.3.0:
   version "6.3.0"
