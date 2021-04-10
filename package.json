@@ -52,7 +52,7 @@
     "inquirer": "7.3.3",
     "jest-worker": "^24.9.0",
     "lodash.merge": "4.6.2",
-    "micromatch": "4.0.3",
+    "micromatch": "4.0.4",
     "ora": "4.1.1",
     "yargs": "15.4.1"
   },
