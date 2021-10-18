@@ -44,7 +44,7 @@
     "release": "semantic-release"
   },
   "dependencies": {
-    "cosmiconfig": "6.0.0",
+    "cosmiconfig": "7.0.1",
     "debug-logger": "0.4.1",
     "execa": "3.4.0",
     "find-up": "4.1.0",
