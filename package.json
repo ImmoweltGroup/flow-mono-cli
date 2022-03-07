@@ -46,7 +46,7 @@
   "dependencies": {
     "cosmiconfig": "6.0.0",
     "debug-logger": "0.4.1",
-    "execa": "3.4.0",
+    "execa": "6.1.0",
     "find-up": "4.1.0",
     "glob": "7.1.7",
     "inquirer": "7.3.3",
