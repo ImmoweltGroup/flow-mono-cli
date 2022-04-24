@@ -70,7 +70,7 @@
     "flow-copy-source": "2.0.9",
     "flow-typed": "2.6.2",
     "jest": "24.9.0",
-    "prettier": "1.19.1",
+    "prettier": "2.6.2",
     "rimraf": "3.0.2",
     "semantic-release": "15.13.31"
   },
