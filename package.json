@@ -54,7 +54,7 @@
     "lodash.merge": "4.6.2",
     "micromatch": "4.0.4",
     "ora": "4.1.1",
-    "yargs": "15.4.1"
+    "yargs": "17.4.1"
   },
   "devDependencies": {
     "@babel/cli": "7.14.5",
